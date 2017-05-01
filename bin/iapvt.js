@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const join = require('path').join;
 
 const defaultCommand = 'dev';
