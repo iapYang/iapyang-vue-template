@@ -16,6 +16,9 @@
     "name": "iapyang",
     "email": "yklorse@gmail.com"
   },
+  "bin": {
+      "iapvt": "./bin/iapvt.js"
+  },
   "keywords": [],
   "repository": {},
   "license": "ISC",
