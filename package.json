@@ -23,6 +23,12 @@
   "repository": {},
   "license": "ISC",
   "devDependencies": {
+    "vuex": "^2.3.1",
+    "vue-router": "^2.5.2",
+    "vue-simple-loading": "^1.1.5",
+    "vue-video-module": "^0.4.3"
+  },
+  "dependencies": {
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.2",
     "babel-loader": "^7.0.0",
@@ -47,19 +53,12 @@
     "sass-loader": "^6.0.3",
     "shelljs": "^0.7.7",
     "style-loader": "^0.16.1",
-    "svg-url-loader": "^2.0.2",
     "url-loader": "^0.5.8",
+    "vue": "^2.2.6",
     "vue-loader": "^11.3.4",
-    "vue-simple-loading": "^1.1.5",
     "vue-template-compiler": "^2.2.6",
-    "vue-video-module": "^0.4.3",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.4",
     "webpack-merge": "^4.1.0"
-  },
-  "dependencies": {
-    "vue": "^2.2.6",
-    "vue-router": "^2.5.2",
-    "vuex": "^2.3.1"
   }
 }

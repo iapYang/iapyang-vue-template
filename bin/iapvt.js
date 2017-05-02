@@ -20,23 +20,19 @@ if (commands.has(cmd)) {
     cmd = defaultCommand;
 }
 
-let commandLine = '';
+let cmdLine = '';
 let fileName = '';
 
-switch (cmd) {
-    case 'dev':
-        fileName = path.join(__dirname, '../conf/webpack.dev.config.js');
-        commandLine = `webpack-dev-server --progress --colors --config ${fileName}`;
-        break;
-    case 'build':
-        fileName = path.join(__dirname, '../conf/webpack.dev.config.js');
-        commandLine = `webpack-dev-server --progress --colors --config ${fileName}`;
-        break;
-    default:
-        break;
+if (cmd === 'gh') {
+    fileName = path.join(__dirname, `../conf/deploy.js`);
+    cmdLine = `node ${fileName}`;
+} else {
+    const cmdTitle = cmd === defaultCommand ? 'webpack-dev-server' : 'webpack';
+    fileName = path.join(__dirname, `../conf/webpack.${cmd}.config.js`);
+    cmdLine = `${cmdTitle} --progress --colors --config ${fileName}`;
 }
 
-shell.exec(commandLine, (code, stdout, stderr) => {
+shell.exec(cmdLine, (code, stdout, stderr) => {
     console.log('Exit code:', code);
     console.log('Program output:', stdout);
     console.log('Program stderr:', stderr);
