@@ -42,7 +42,7 @@ module.exports = {
                             ['es2015', {
                                 modules: false,
                             }],
-                            'stage-3',
+                            require('babel-preset-stage-3'),
                         ],
                         plugins: [
                             require('babel-plugin-transform-object-rest-spread'),
