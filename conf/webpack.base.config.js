@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+const fs = require('fs');
 const webpack = require('webpack');
 const postcssConfig = require('./postcss.config.js');
 
@@ -20,6 +21,10 @@ jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = file;
 });
 
+const eslintRoot = path.join(process.cwd(), '.eslintrc');
+const eslintCurrent = path.join(__dirname, '../.eslintrc');
+const eslintPath = fs.existsSync(eslintRoot) ? eslintRoot : eslintCurrent;
+
 module.exports = {
     entry,
     output: {
@@ -30,8 +35,21 @@ module.exports = {
         rules: [
             {
                 test: /\.js(x)?$/,
-                use: [
-                    'babel-loader',
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            ['es2015', {
+                                modules: false,
+                            }],
+                            'stage-3',
+                        ],
+                        plugins: [
+                            'transform-object-rest-spread',
+                            'transform-class-properties',
+                        ],
+                    },
+                },
                     eslintLoader,
                 ],
                 exclude: /node_module/,
@@ -108,7 +126,7 @@ module.exports = {
                     },
                 },
                 eslint: {
-                    configFile: path.join(process.cwd(), '.eslintrc'),
+                    configFile: eslintPath,
                 },
             },
         }),
