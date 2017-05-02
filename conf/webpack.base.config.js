@@ -45,8 +45,8 @@ module.exports = {
                             'stage-3',
                         ],
                         plugins: [
-                            'transform-object-rest-spread',
-                            'transform-class-properties',
+                            require('babel-plugin-transform-object-rest-spread'),
+                            require('babel-plugin-transform-class-properties'),
                         ],
                     },
                 },
