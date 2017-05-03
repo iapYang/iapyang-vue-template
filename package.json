@@ -19,6 +19,21 @@
   "bin": {
     "iapvt": "./bin/iapvt.js"
   },
+  "babel": {
+    "presets": [
+        [
+            "es2015",
+            {
+                "modules": false
+            }
+        ],
+        "stage-3"
+    ],
+    "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties"
+    ]
+  },
   "keywords": [],
   "repository": {},
   "license": "ISC",

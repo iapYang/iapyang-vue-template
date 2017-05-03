@@ -35,21 +35,8 @@ module.exports = {
         rules: [
             {
                 test: /\.js(x)?$/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['es2015', {
-                                modules: false,
-                            }],
-                            require('babel-preset-stage-3'),
-                        ],
-                        plugins: [
-                            require('babel-plugin-transform-object-rest-spread'),
-                            require('babel-plugin-transform-class-properties'),
-                        ],
-                    },
-                },
+                use: [
+                    'babel-loader',
                     eslintLoader,
                 ],
                 exclude: /node_module/,
