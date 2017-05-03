@@ -1,6 +1,6 @@
 {
   "name": "iapyang-vue-template",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,17 +21,17 @@
   },
   "babel": {
     "presets": [
-        [
-            "es2015",
-            {
-                "modules": false
-            }
-        ],
-        "stage-3"
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
+      "stage-3"
     ],
     "plugins": [
-        "transform-object-rest-spread",
-        "transform-class-properties"
+      "transform-object-rest-spread",
+      "transform-class-properties"
     ]
   },
   "keywords": [],
