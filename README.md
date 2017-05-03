@@ -10,15 +10,6 @@
 
 ## 目录结构
 
-- component：vue组件
-- font：字体（[在线转换字体](https://onlinefontconverter.com/) ｜ [常用字体库](https://github.com/JoshuaYang/web-fonts)）
-- image：图片
-- script：脚本
-- style：样式
-- vendor：不参与合并输出的文件（可能需要手动创建该目录）
-- store：状态管理
-- router.js：路由配置
-
 ```
  website-template/    
     |——config/    
@@ -32,7 +23,7 @@
     |——dev/    
     |   |——component/ 全部组件    
     |   |   |——common/ 全局复用组件    
-    |   |   |——layout/ 布局组件    
+    |   |   |——layout/ 布局组件
     |	|	|——view/ 路由页面组件
     |   |   |——src/ 配合bundle命令输出编译后js组件    
     |   |   |   |——***.vue 可复用化组件    
@@ -40,19 +31,54 @@
     |   |   |——App.vue 出口输出组件    
     |   |——font/ 字体资源    
     |   |——image/ 图片资源    
-    |   |   |——ignore/ 被require的资源，图片小于10kB    
     |   |——script/ 第三方插件库    
     |   |——store/ vuex配置目录    
     |   |——style/ 样式目录    
     |   |——*.html    
     |   |——router.js 路由配置目录    
-    |   |——favico.ico    
-    |——.babelrc babel配置文件    
-    |——.eslintignore eslint忽略列表    
-    |——.eslintrc eslint配置文件    
+    |   |——favico.ico
+    |——build/ 静态网站生成目录
+	|——bundle/ 可复用组件生成目录
+	|	|——index.js 输出目录
+    |——.eslintignore eslint忽略列表
+    |——.eslintrc eslint配置文件，若不配置，默认使用本包中的   
     |——.gitignore    
-    |——.package.json 项目配置目录    
-    |——README.md 说明文档    
+    |——.package.json 项目配置目录      
     |__***/**
+```
+
+## 安装
+
+```javascript
+npm install iapyang-vue-template -D
+```
+
+## 配置
+
+在package.json中，添加scripts目录
+
+```javascript
+{
+  "scripts": {
+    "dev": "iapvt"
+  }
+}
+```
+
+运行
+
+```javascript
+npm run dev
+```
+
+其他任务配置
+
+```javascript
+{
+  "scripts": {
+    "build": "iapvt build",
+    "bundle": "iapvt bundle"
+  }
+}
 ```
 
