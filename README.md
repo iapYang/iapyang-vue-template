@@ -8,6 +8,8 @@
 
 [![NPM](https://nodei.co/npm-dl/iapyang-vue-template.png?months=1&height=3)](https://nodei.co/npm/iapyang-vue-template/)
 
+## Language
+
 [中文](https://github.com/iapYang/iapyang-vue-template/blob/master/README-zh.md)
 
 ## Env
@@ -49,6 +51,54 @@
     |——.package.json     
     |__***/**
 ```
+
+#### The Dev Directory
+
+The `dev` folder contains evreythings you need during your development.
+
+This folder is required.
+
+#### The Component Directory
+
+The `component` folder contains all the .vue files.
+
+This folder is optional.
+
+#### The Font Directory
+
+The `font` folder contains font files.
+
+This folder is optional.
+
+#### The Image Directory
+
+The `image` folder contains image files.
+
+This folder is optional.
+
+#### The Script Directory
+
+The `script` folder contains javascript files.
+
+In additional, the eslint won't check files under `script/plugin`
+
+This folder is optional.
+
+#### The Store Directory
+
+The `stroe` folder contains vuex files.
+
+This folder is optional.
+
+#### The Style Directory
+
+The `style` folder contains common scss files.
+
+This folder is optional.
+
+#### *.html
+
+The `*.html` is file of website 
 
 ## Install
 
