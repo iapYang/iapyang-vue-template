@@ -1,7 +1,7 @@
 {
   "name": "iapyang-vue-template",
   "version": "0.0.5",
-  "description": "",
+  "description": "a simple vue template",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
@@ -34,8 +34,15 @@
       "transform-class-properties"
     ]
   },
-  "keywords": [],
-  "repository": {},
+  "keywords": [
+    "vue",
+    "vue template",
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iapYang/iapyang-vue-template"
+  },
   "license": "ISC",
   "devDependencies": {
     "vue-simple-loading": "^1.1.5",
