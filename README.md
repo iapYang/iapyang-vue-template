@@ -8,8 +8,6 @@
 
 [![NPM](https://nodei.co/npm-dl/iapyang-vue-template.png?months=1&height=3)](https://nodei.co/npm/iapyang-vue-template/)
 
-
-
 [中文](https://github.com/iapYang/iapyang-vue-template/blob/master/README-zh.md)
 
 ## Env
@@ -20,62 +18,49 @@
 - grammar check：ESLint
 - pack：webpack
 
-## 目录结构
+## Directory Structure
 
 ```
- website-template/    
-    |——config/    
-    |   |——postcss.config.js    
-    |   |——webpack.base.config.js    
-    |   |——webpack.dev.config.js    
-    |   |——webpack.prod.config.js    
-    |   |——webpack.bundle.config.js    
-    |   |——deploy.js    
-    |   |__ ***    
+ My-App/       
     |——dev/    
-    |   |——component/ 全部组件    
-    |   |   |——common/ 全局复用组件    
-    |   |   |——layout/ 布局组件
-    |   |   |——view/ 路由页面组件
-    |   |   |——src/ 配合bundle命令输出编译后js组件    
-    |   |   |   |——***.vue 可复用化组件    
-    |   |   |   |——***.js 输出文件    
-    |   |   |——App.vue 出口输出组件    
-    |   |——font/ 字体资源    
-    |   |——image/ 图片资源    
-    |   |——script/ 第三方插件库    
-    |   |——store/ vuex配置目录  
+    |   |——component/ all vue component    
+    |   |   |——common/ common component can be used in global
+    |   |   |——layout/ 
+    |   |   |——view/ route page  
+    |   |   |——App.vue export vue    
+    |   |——font/  
+    |   |——image/    
+    |   |——script/ third party    
+    |   |——store/ vuex  
     |   |   |——actions.js
     |   |   |——getters.js
     |   |   |——index.js
     |   |   |——mutation-types.js
     |   |   |——mutations.js
     |   |   |——state.js 
-    |   |——style/ 公共样式目录    
+    |   |——style/ common style    
     |   |——*.html    
-    |   |——router.js 路由配置目录    
+    |   |——router.js router    
     |   |——favico.ico
-    |——build/ 静态网站生成目录
-    |——bundle/ 可复用组件生成目录
-    |   |——index.js 输出目录
-    |——.eslintignore eslint忽略列表
-    |——.eslintrc eslint配置文件，若不配置，默认使用本包中的   
+    |——build/ output files
+    |——.eslintignore
+    |——.eslintrc eslint files, if not use, default use mine   
     |——.gitignore    
-    |——.package.json 项目配置目录      
+    |——.package.json     
     |__***/**
 ```
 
-## 安装
+## Install
 
 ```javascript
 npm install iapyang-vue-template -D
 ```
 
-## 配置
+## Configuration
 
-在package.json中，添加scripts目录
+In package.json, add scripts.
 
-```javascript
+```json
 {
   "scripts": {
     "dev": "iapvt"
@@ -83,19 +68,18 @@ npm install iapyang-vue-template -D
 }
 ```
 
-运行
+run
 
 ```javascript
 npm run dev
 ```
 
-其他任务配置
+other scripts
 
-```javascript
+```json
 {
   "scripts": {
-    "build": "iapvt build",
-    "bundle": "iapvt bundle"
+    "build": "iapvt build"
   }
 }
 ```
