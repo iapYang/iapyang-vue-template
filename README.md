@@ -10,8 +10,6 @@
 
 ## Attention
 
-If there's an eslint error in your files, webpack won't compile successfully.
-
 This project is not finished yet, be careful before downloading it.
 
 ## Language
@@ -100,7 +98,7 @@ This folder is optional.
 
 The `stroe` folder contains vuex files.
 
-This folder is required.
+This folder is optional.
 
 #### The Style Directory
 
@@ -118,7 +116,7 @@ This is required.
 
 The `router.js` is file for vue router.
 
-This is required.
+This is optional.
 
 #### favico.ico
 
