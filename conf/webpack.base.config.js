@@ -9,6 +9,10 @@ const fontRegex = /(font+\/)/;
 
 const jsFiles = glob.sync('./dev/script/*.js');
 const entry = {};
+jsFiles.forEach((file, i) => {
+    entry[path.basename(file, '.js')] = ['babel-polyfill', file];
+});
+
 const eslintLoader = {
     loader: 'eslint-loader',
     options: {
@@ -16,14 +20,9 @@ const eslintLoader = {
         failOnError: false,
     },
 };
-
-jsFiles.forEach((file, i) => {
-    entry[path.basename(file, '.js')] = ['babel-polyfill', file];
-});
-
-const eslintRoot = path.join(process.cwd(), '.eslintrc');
-const eslintCurrent = path.join(__dirname, '../.eslintrc');
-const eslintPath = fs.existsSync(eslintRoot) ? eslintRoot : eslintCurrent;
+const eslintLocal = path.join(process.cwd(), '.eslintrc');
+const eslintRemote = path.join(__dirname, '../.eslintrc');
+const eslintPath = fs.existsSync(eslintLocal) ? eslintLocal : eslintRemote;
 
 module.exports = {
     entry,
