@@ -8,6 +8,10 @@
 
 [![NPM](https://nodei.co/npm-dl/iapyang-vue-template.png?months=1&height=3)](https://nodei.co/npm/iapyang-vue-template/)
 
+## Attention
+
+If there's an eslint error in your files, webpack won't compile successfully.
+
 ## Language
 
 [中文](https://github.com/iapYang/iapyang-vue-template/blob/master/README-zh.md)
@@ -32,7 +36,9 @@
     |   |   |——App.vue export vue    
     |   |——font/  
     |   |——image/    
-    |   |——script/ third party    
+    |   |——script/
+    |   |   |——*.js
+    |   |   |——plugin/
     |   |——store/ vuex  
     |   |   |——actions.js
     |   |   |——getters.js
@@ -41,7 +47,7 @@
     |   |   |——mutations.js
     |   |   |——state.js 
     |   |——style/ common style    
-    |   |——*.html    
+    |   |——*.html
     |   |——router.js router    
     |   |——favico.ico
     |——build/ output files
@@ -80,6 +86,8 @@ This folder is optional.
 
 The `script` folder contains javascript files.
 
+`*.js` is the files which is one to one correspondence with `*.html`.
+
 In additional, the eslint won't check files under `script/plugin`
 
 This folder is optional.
@@ -98,7 +106,31 @@ This folder is optional.
 
 #### *.html
 
-The `*.html` is file of website 
+The `*.html` is file for website, use the `*.js` for script.
+
+This is required.
+
+#### router.js
+
+The `router.js` is file for vue router.
+
+This is optional.
+
+#### favico.ico
+
+The `favico.ico` is file for website icon.
+
+This is optional.
+
+#### .eslintrc
+
+The `.eslintrc` is file for eslint check.
+
+If you create it on your side, the engine will use the one you created.
+
+Instead, It'll use mine default.
+
+This is optional.
 
 ## Install
 
