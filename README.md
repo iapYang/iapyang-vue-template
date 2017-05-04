@@ -26,6 +26,8 @@ If there's an eslint error in your files, webpack won't compile successfully.
 
 ## Directory Structure
 
+Here is the [starter code](https://github.com/iapYang/iapyang-vue-template/raw/master/starter/starter-source.zip) zip for better understanding.
+
 ```
  My-App/       
     |——dev/    
