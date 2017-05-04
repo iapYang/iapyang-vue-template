@@ -12,6 +12,8 @@
 
 If there's an eslint error in your files, webpack won't compile successfully.
 
+This project is not finished yet, be careful when downloading it.
+
 ## Language
 
 [中文](https://github.com/iapYang/iapyang-vue-template/blob/master/README-zh.md)
@@ -98,7 +100,7 @@ This folder is optional.
 
 The `stroe` folder contains vuex files.
 
-This folder is optional.
+This folder is required.
 
 #### The Style Directory
 
@@ -116,7 +118,7 @@ This is required.
 
 The `router.js` is file for vue router.
 
-This is optional.
+This is required.
 
 #### favico.ico
 
