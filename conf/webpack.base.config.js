@@ -18,7 +18,7 @@ const eslintLoader = {
 };
 
 jsFiles.forEach((file, i) => {
-    entry[path.basename(file, '.js')] = file;
+    entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
 
 const eslintRoot = path.join(process.cwd(), '.eslintrc');
@@ -26,10 +26,10 @@ const eslintCurrent = path.join(__dirname, '../.eslintrc');
 const eslintPath = fs.existsSync(eslintRoot) ? eslintRoot : eslintCurrent;
 
 module.exports = {
-    entry: ['babel-polyfill', './dev/script/index.js'],
+    entry,
     output: {
         path: path.join(process.cwd(), 'dist'),
-        filename: 'index.js',
+        filename: '[name].js',
     },
     module: {
         rules: [
