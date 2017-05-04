@@ -3,6 +3,7 @@ const glob = require('glob');
 const fs = require('fs');
 const webpack = require('webpack');
 const postcssConfig = require('./postcss.config.js');
+const customizeConfig = require('./customizeConfig.js');
 
 // the folder put font
 const fontRegex = /(font+\/)/;
@@ -16,8 +17,8 @@ jsFiles.forEach((file, i) => {
 const eslintLoader = {
     loader: 'eslint-loader',
     options: {
-        failOnWarning: false,
-        failOnError: false,
+        failOnWarning: customizeConfig.eslint,
+        failOnError: customizeConfig.eslint,
     },
 };
 const eslintLocal = path.join(process.cwd(), '.eslintrc');
