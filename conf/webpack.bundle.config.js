@@ -11,7 +11,7 @@ const customizePath = path.join(process.cwd(), './config/webpack.bundle.config.j
 const customizeOptions = fs.existsSync(customizePath) ? require(customizePath) : {};
 
 module.exports = merge(baseWebpackConfig, {
-    entry: './dev/component/src/index.js',
+    entry: ['babel-polyfill', './dev/component/src/index.js'],
     output: {
         path: path.join(process.cwd(), 'bundle'),
         filename: 'index.js',
