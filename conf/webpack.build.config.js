@@ -31,7 +31,8 @@ module.exports = merge(baseWebpackConfig, {
         }),
         new CopyWebpackPlugin([
             {
-                from: './dev/favicon.ico',
+                from: './dev/static',
+                to: 'static',
             },
         ]),
     ],
