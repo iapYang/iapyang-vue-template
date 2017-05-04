@@ -12,7 +12,7 @@
 
 If there's an eslint error in your files, webpack won't compile successfully.
 
-This project is not finished yet, be careful when downloading it.
+This project is not finished yet, be careful before downloading it.
 
 ## Language
 
