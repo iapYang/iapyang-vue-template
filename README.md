@@ -51,12 +51,13 @@ Here is the [starter code](https://github.com/iapYang/iapyang-vue-template/raw/m
     |   |——style/ common style    
     |   |——*.html
     |   |——router.js router    
-    |   |——favico.ico
+    |   |——static/
     |——build/ output files
     |——.eslintignore
     |——.eslintrc eslint files, if not use, default use mine   
     |——.gitignore    
-    |——.package.json     
+    |——.package.json
+    |——iapvt.config.js
     |__***/**
 ```
 
@@ -118,9 +119,11 @@ The `router.js` is file for vue router.
 
 This is optional.
 
-#### favico.ico
+#### The Static Directory
 
-The `favico.ico` is file for website icon.
+The `static` store the files won;t change.
+
+It'll copy to static folder when build.
 
 This is optional.
 
@@ -133,6 +136,20 @@ If you create it on your side, the engine will use the one you created.
 Instead, It'll use mine default.
 
 This is optional.
+
+#### iapvt.config.js
+
+Override webpack engine.
+
+```javascript
+// Options
+{
+  // close eslint when compile, otherwise it'll fail to complie when eslint has error or warning
+  eslint: false,
+}
+```
+
+ 
 
 ## Install
 
