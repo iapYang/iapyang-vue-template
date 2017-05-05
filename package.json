@@ -8,6 +8,7 @@
     "build": "webpack --progress --config ./conf/webpack.build.config.js",
     "bundle": "webpack --progress --config ./conf/webpack.bundle.config.js",
     "gh": "node conf/deploy",
+    "cli": "node ./bin/iapvt-cli.js",
     "check": "ncu",
     "update-json": "ncu -a",
     "update-package": "npm update"
@@ -66,6 +67,7 @@
     "file-loader": "0.11.1",
     "gh-pages": "0.12.0",
     "html-webpack-plugin": "2.28.0",
+    "ncp": "^2.0.0",
     "node-sass": "4.5.2",
     "postcss-css-variables": "0.7.0",
     "postcss-cssnext": "2.10.0",
@@ -75,10 +77,10 @@
     "style-loader": "0.17.0",
     "url-loader": "0.5.8",
     "vue": "2.3.1",
-    "vuex": "2.3.1",
     "vue-loader": "12.0.2",
     "vue-router": "2.5.3",
     "vue-template-compiler": "2.3.1",
+    "vuex": "2.3.1",
     "webpack": "2.4.1",
     "webpack-dev-server": "2.4.5",
     "webpack-merge": "4.1.0"

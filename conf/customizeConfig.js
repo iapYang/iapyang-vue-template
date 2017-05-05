@@ -7,5 +7,9 @@ const customizeConfig = fs.existsSync(customizePath) ? require(customizePath) : 
 
 module.export = merge({
     eslint: true,
+    cli: {
+        'no-vuex': false,
+        'no-router': false,
+    },
     bundle: {},
 }, customizeConfig);
