@@ -29,7 +29,7 @@ function arrayToObject(array) {
 
 const templatePath = path.join(__dirname, '../template');
 const destPath = path.join(process.cwd(), './tmp');
-const indexPath = path.join(destPath, './script/index.js');
+const indexJsPath = path.join(destPath, './script/index.js');
 const routerPath = path.join(destPath, './router.js');
 const storePath = path.join(destPath, './store');
 
@@ -52,14 +52,14 @@ const replacement = {
 };
 
 function replaceIndex(name) {
-    const fid = fs.openSync(indexPath, 'rs+');
-    let content = fs.readFileSync(indexPath, 'utf-8');
+    const fid = fs.openSync(indexJsPath, 'rs+');
+    let content = fs.readFileSync(indexJsPath, 'utf-8');
 
     replacement[name].forEach(item => {
         content = content.replace(item.default, item.replace);
     });
 
-    fs.writeFileSync(indexPath, content, {
+    fs.writeFileSync(indexJsPath, content, {
         encoding: 'utf-8',
     });
 
