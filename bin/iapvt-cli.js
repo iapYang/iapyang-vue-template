@@ -33,13 +33,6 @@ const indexJsPath = path.join(destPath, './script/index.js');
 const routerPath = path.join(destPath, './router.js');
 const storePath = path.join(destPath, './store');
 
-const replaceContent = {
-    imStore: `import store from '../store/index';`,
-    usStore: `store,`,
-    imRouter: `import router from '../router';`,
-    usRouter: `router,`,
-};
-
 const replacement = {
     router: arrayToObject([
         `// import router from '../router';`,
