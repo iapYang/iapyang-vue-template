@@ -14,7 +14,7 @@ const replaceContent = {
     imStore: `import store from '../store/index';`,
     usStore: `store,`,
     imRouter: `import router from '../router';`,
-    usRouter: `store,`,
+    usRouter: `router,`,
 };
 
 function rmdir(dir) {
@@ -38,14 +38,10 @@ function rmdir(dir) {
 
 function replaceIndex(name) {
     // name is Store or Router
-    const fid = fs.openSync(indexPath, 'w+');
+    const fid = fs.openSync(indexPath, 'rs+');
     const content = fs.readFileSync(indexPath, 'utf-8');
 
-    console.log(content);
-
     const replacement = content.replace(`// im${name}`, replaceContent[`im${name}`]).replace(`// us${name}`, replaceContent[`us${name}`]);
-
-    console.log(replacement);
 
     fs.writeFileSync(indexPath, replacement, {
         encoding: 'utf-8',
