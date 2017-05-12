@@ -12,6 +12,7 @@ const commands = new Set([
     'gh',
 ]);
 
+
 let cmd = process.argv[2];
 
 if (commands.has(cmd)) {
