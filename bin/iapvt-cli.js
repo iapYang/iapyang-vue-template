@@ -17,23 +17,18 @@ const replaceContent = {
     usRouter: `router,`,
 };
 
-function rmdir(dir) {
-    const list = fs.readdirSync(dir);
-    for (let i = 0; i < list.length; i++) {
-        const filename = path.join(dir, list[i]);
-        const stat = fs.statSync(filename);
-
-        if (filename === '.' || filename === '..') {
-            // pass these files
-        } else if (stat.isDirectory()) {
-            // rmdir recursively
-            rmdir(filename);
-        } else {
-            // rm fiilename
-            fs.unlinkSync(filename);
-        }
+function deleteFolderRecursive(path) {
+    if (fs.existsSync(path)) {
+        fs.readdirSync(path).forEach((file, index) => {
+            const curPath = `${path}/${file}`;
+            if (fs.lstatSync(curPath).isDirectory()) { // recurse
+                deleteFolderRecursive(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(path);
     }
-    fs.rmdirSync(dir);
 }
 
 function replaceIndex(name) {
@@ -58,7 +53,7 @@ ncp(templatePath, destPath, err => {
     if (err) {
         return console.error(err);
     }
-    console.log('template copy done!');
+    console.info('template copy done!');
 
     const cmds = new Set(process.argv);
 
@@ -67,12 +62,12 @@ ncp(templatePath, destPath, err => {
     } else {
         replaceIndex('Router');
     }
-     
-    // if (cmds.has('-s')) {
-    //     fs.rmdir(storePath);
-    // } else {
-    //     replaceIndex('Store');
-    // }
+
+    if (cmds.has('-s')) {
+        deleteFolderRecursive(storePath);
+    } else {
+        replaceIndex('Store');
+    }
 });
 
 
