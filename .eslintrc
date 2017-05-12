@@ -74,7 +74,9 @@
         "prefer-arrow-callback": "error", // 回调使用箭头函数
         "arrow-spacing": "error", // 箭头前后要有空格
         "arrow-parens": ["error", "as-needed"], // 参数使用括号包裹
-        "arrow-body-style": "error", // 函数体在必要的时候使用大括号
+        "arrow-body-style": [
+            "error", "as-needed", { "requireReturnForObjectLiteral": true }
+        ], // 函数体在必要的时候使用大括号
         "no-confusing-arrow": "error", // 避免容易引起混淆的箭头函数
 
 

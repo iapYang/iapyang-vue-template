@@ -1,12 +1,12 @@
 import Vue from 'vue';
+// import router from '../router';
+// import store from '../store';
 
-// imRouter
-// imStore
 import App from '../component/App.vue';
 
 const app = new Vue({
-    // usRouter
-    // usStore
+    // router,
+    // store,
     components: {
         App,
     },

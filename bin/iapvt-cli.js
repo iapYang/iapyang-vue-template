@@ -4,19 +4,6 @@ const ncp = require('ncp');
 
 ncp.limit = 16;
 
-const templatePath = path.join(__dirname, '../template');
-const destPath = path.join(process.cwd(), './tmp');
-const indexPath = path.join(destPath, './script/index.js');
-const routerPath = path.join(destPath, './router.js');
-const storePath = path.join(destPath, './store');
-
-const replaceContent = {
-    imStore: `import store from '../store/index';`,
-    usStore: `store,`,
-    imRouter: `import router from '../router';`,
-    usRouter: `router,`,
-};
-
 function deleteFolderRecursive(path) {
     if (fs.existsSync(path)) {
         fs.readdirSync(path).forEach((file, index) => {
@@ -31,14 +18,48 @@ function deleteFolderRecursive(path) {
     }
 }
 
+function arrayToObject(array) {
+    return array.map(item => {
+        return {
+            default: item,
+            replace: item.replace('// ', ''),
+        };
+    });
+}
+
+const templatePath = path.join(__dirname, '../template');
+const destPath = path.join(process.cwd(), './tmp');
+const indexPath = path.join(destPath, './script/index.js');
+const routerPath = path.join(destPath, './router.js');
+const storePath = path.join(destPath, './store');
+
+const replaceContent = {
+    imStore: `import store from '../store/index';`,
+    usStore: `store,`,
+    imRouter: `import router from '../router';`,
+    usRouter: `router,`,
+};
+
+const replacement = {
+    router: arrayToObject([
+        `// import router from '../router';`,
+        `// router,`,
+    ]),
+    store: arrayToObject([
+        `// import store from '../store';`,
+        `// store,`,
+    ]),
+};
+
 function replaceIndex(name) {
-    // name is Store or Router
     const fid = fs.openSync(indexPath, 'rs+');
-    const content = fs.readFileSync(indexPath, 'utf-8');
+    let content = fs.readFileSync(indexPath, 'utf-8');
 
-    const replacement = content.replace(`// im${name}`, replaceContent[`im${name}`]).replace(`// us${name}`, replaceContent[`us${name}`]);
+    replacement[name].forEach(item => {
+        content = content.replace(item.default, item.replace);
+    });
 
-    fs.writeFileSync(indexPath, replacement, {
+    fs.writeFileSync(indexPath, content, {
         encoding: 'utf-8',
     });
 
@@ -60,13 +81,13 @@ ncp(templatePath, destPath, err => {
     if (cmds.has('-r')) {
         fs.unlinkSync(routerPath);
     } else {
-        replaceIndex('Router');
+        replaceIndex('router');
     }
 
     if (cmds.has('-s')) {
         deleteFolderRecursive(storePath);
     } else {
-        replaceIndex('Store');
+        replaceIndex('store');
     }
 });
 
