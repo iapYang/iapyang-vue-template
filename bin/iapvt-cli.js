@@ -44,7 +44,7 @@ const replacement = {
     ]),
 };
 
-function replaceIndex(name) {
+function replaceIndexJs(name) {
     const fid = fs.openSync(indexJsPath, 'rs+');
     let content = fs.readFileSync(indexJsPath, 'utf-8');
 
@@ -74,13 +74,13 @@ ncp(templatePath, destPath, err => {
     if (cmds.has('-r')) {
         fs.unlinkSync(routerPath);
     } else {
-        replaceIndex('router');
+        replaceIndexJs('router');
     }
 
     if (cmds.has('-s')) {
         deleteFolderRecursive(storePath);
     } else {
-        replaceIndex('store');
+        replaceIndexJs('store');
     }
 });
 
