@@ -11,7 +11,6 @@ const commands = new Set([
     'bundle',
     'gh',
 ]);
-u
 
 let cmd = process.argv[2];
 
