@@ -5,35 +5,38 @@ const path = require('path');
 
 const defaultCommand = 'dev';
 
-const commands = new Set([
+const cmds = new Set([
     defaultCommand,
     'build',
     'bundle',
     'gh',
+    'cli',
 ]);
 
 let cmd = process.argv[2];
 
-if (commands.has(cmd)) {
+if (cmds.has(cmd)) {
     process.argv.splice(2, 1);
 } else {
     cmd = defaultCommand;
 }
 
-let cmdLine = '';
-let fileName = '';
+const webpackCmds = new Set([
+    defaultCommand,
+    'build',
+    'bundle',
+]);
 
-if (cmd === 'gh') {
-    fileName = path.join(__dirname, `../conf/deploy.js`);
-    cmdLine = `node ${fileName}`;
+if (webpackCmds.has(cmd)) {
+    const cmdName = cmd === 'dev' ? 'webpack-dev-server' : 'webpack';
+    const fileName = path.join(__dirname, `../conf/webpack.${cmd}.config.js`);
+    const command = `${cmdName} --progress --colors --config ${fileName}`;
+
+    shell.exec(command, (code, stdout, stderr) => {
+        console.log('Exit code:', code);
+        console.log('Program output:', stdout);
+        console.log('Program stderr:', stderr);
+    });
 } else {
-    const cmdTitle = cmd === defaultCommand ? 'webpack-dev-server' : 'webpack';
-    fileName = path.join(__dirname, `../conf/webpack.${cmd}.config.js`);
-    cmdLine = `${cmdTitle} --progress --colors --config ${fileName}`;
+    require(`./iapvt-${cmd}.js`);
 }
-
-shell.exec(cmdLine, (code, stdout, stderr) => {
-    console.log('Exit code:', code);
-    console.log('Program output:', stdout);
-    console.log('Program stderr:', stderr);
-});
