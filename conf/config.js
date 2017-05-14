@@ -6,7 +6,7 @@ const customizePath = path.join(process.cwd(), './iapvt.config.js');
 const customizeConfig =
 fs.existsSync(customizePath) ? require(customizePath) : {};
 
-module.export = merge({
+module.exports = merge({
     eslint: true,
     cliPath: 'dev',
     bundle: {},
