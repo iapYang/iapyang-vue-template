@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const ncp = require('ncp');
 
-const {cliPath} = require('../conf/config.js');
+const config = require('../conf/config.js');
 
 ncp.limit = 16;
 
@@ -30,7 +30,7 @@ function arrayToObject(array) {
 }
 
 const templatePath = path.join(__dirname, '../template');
-const destPath = path.join(process.cwd(), `./${cliPath}`);
+const destPath = path.join(process.cwd(), `./${config.cliPath}`);
 const indexJsPath = path.join(destPath, './script/index.js');
 const routerPath = path.join(destPath, './router.js');
 const storePath = path.join(destPath, './store');
