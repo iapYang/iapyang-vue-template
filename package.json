@@ -1,6 +1,6 @@
 {
   "name": "iapyang-vue-template",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "a simple vue template",
   "main": "index.js",
   "scripts": {
