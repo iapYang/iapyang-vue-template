@@ -30,8 +30,6 @@ This project is not finished yet, be careful before downloading it.
 
 ## Directory Structure
 
-Here is the [starter code](https://github.com/iapYang/iapyang-vue-template/raw/master/starter/starter-source.zip) zip for better understanding.
-
 ```
  My-App/       
     |——dev/    
