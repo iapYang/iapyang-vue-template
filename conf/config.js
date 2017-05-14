@@ -3,13 +3,11 @@ const fs = require('fs');
 const merge = require('webpack-merge');
 
 const customizePath = path.join(process.cwd(), './iapvt.config.js');
-const customizeConfig = fs.existsSync(customizePath) ? require(customizePath) : {};
+const customizeConfig =
+fs.existsSync(customizePath) ? require(customizePath) : {};
 
 module.export = merge({
     eslint: true,
-    cli: {
-        'no-vuex': false,
-        'no-router': false,
-    },
+    cliPath: 'dev',
     bundle: {},
 }, customizeConfig);

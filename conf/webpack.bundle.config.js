@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const fs = require('fs');
 const baseWebpackConfig = require('./webpack.base.config.js');
-const customizeConfig = require('./customizeConfig.js');
+const config = require('./config.js');
 
 module.exports = merge(baseWebpackConfig, {
     entry: ['babel-polyfill', './dev/component/src/index.js'],
@@ -22,4 +22,4 @@ module.exports = merge(baseWebpackConfig, {
             },
         }),
     ],
-}, customizeConfig.bundle);
+}, config.bundle);
