@@ -12,6 +12,10 @@
 
 This project is not finished yet, be careful before downloading it.
 
+## Changelog
+
+> v0.2.6 add cli command for use, see [here](#Configuration)
+
 ## Language
 
 [中文](https://github.com/iapYang/iapyang-vue-template/blob/master/README-zh.md)
@@ -164,24 +168,23 @@ In package.json, add scripts.
 ```json
 {
   "scripts": {
-    "dev": "iapvt"
+    "iapvt": "iapvt"
   }
 }
 ```
 
-run
+#### usage
 
 ```javascript
-npm run dev
-```
-
-other scripts
-
-```json
-{
-  "scripts": {
-    "build": "iapvt build"
-  }
-}
+// for develop
+npm run iapvt
+// for build
+npm run iapvt build
+// for generate blank runable structure
+npm run iapvt cli
+// for generate blank runable structure without router files
+npm run iapvt cli -r
+// for generate blank runable structure without vuex files
+npm run iapvt cli -s
 ```
 
