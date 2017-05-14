@@ -14,7 +14,7 @@ This project is not finished yet, be careful before downloading it.
 
 ## Changelog
 
-> v0.2.6 add cli command for use, see [here](#Configuration)
+> v0.2.7 add cli command for use, see [here](#Configuration)
 
 ## Language
 
