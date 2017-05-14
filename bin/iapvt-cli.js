@@ -28,7 +28,7 @@ function arrayToObject(array) {
 }
 
 const templatePath = path.join(__dirname, '../template');
-const destPath = path.join(process.cwd(), './tmp');
+const destPath = path.join(process.cwd(), './dev');
 const indexJsPath = path.join(destPath, './script/index.js');
 const routerPath = path.join(destPath, './router.js');
 const storePath = path.join(destPath, './store');
