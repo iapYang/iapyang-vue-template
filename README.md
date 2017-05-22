@@ -14,11 +14,9 @@ This project is not finished yet, be careful before downloading it.
 
 ## Changelog
 
-> v0.2.8 add cli command for use, see [here](#Configuration)
-
-## Language
-
-[中文](https://github.com/iapYang/iapyang-vue-template/blob/master/README-zh.md)
+> v0.2.9 update dependencies versions
+>
+> v0.2.8 add cli command for use, see [here](#configuration)
 
 ## Env
 
