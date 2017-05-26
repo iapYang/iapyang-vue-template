@@ -65,26 +65,26 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+                test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
                         limit: 1024,
-                        name: 'font/[name].[ext]',
+                        name: 'static/[name].[ext]',
                     },
                 }],
-                include: fontRegex,
+                // include: fontRegex,
             },
             {
                 test: /\.(jpg|jpeg|png|gif|svg)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 5120,
-                        name: 'image/[name].[ext]',
+                        limit: 1024,
+                        name: 'static/[name].[ext]',
                     },
                 }],
-                exclude: fontRegex,
+                // exclude: fontRegex,
             },
         ],
     },
