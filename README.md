@@ -14,7 +14,7 @@ This project is not finished yet, be careful before downloading it.
 
 ## Changelog
 
-> v0.3.0 change part of the build structure
+> v0.3.0 change part of the build structure & add gh-pages function
 >
 > v0.2.9 update dependencies versions
 >
@@ -178,6 +178,8 @@ In package.json, add scripts.
 npm run iapvt
 // for build
 npm run iapvt build
+// for upload to git-pages
+npm run iapvt gh
 // for generate blank runable structure
 npm run iapvt cli
 // for generate blank runable structure without router files

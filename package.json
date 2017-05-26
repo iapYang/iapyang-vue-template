@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
     "build": "webpack --progress --config ./conf/webpack.build.config.js",
     "bundle": "webpack --progress --config ./conf/webpack.bundle.config.js",
-    "gh": "node conf/deploy",
+    "gh": "node ./bin/iapvt.js gh",
     "cli": "node ./bin/iapvt-cli.js",
     "check": "ncu",
     "update-json": "ncu -a",
