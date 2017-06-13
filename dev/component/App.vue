@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import Message from './layout/Message.vue';
 import Controller from './layout/Controller.vue';
 
 import Loading from 'vue-simple-loading';
@@ -32,7 +31,7 @@ export default {
         };
     },
     components: {
-        Message,
+        Message: () => import('./layout/Message.vue'),
         Controller,
         Loading,
         VueVideo,
