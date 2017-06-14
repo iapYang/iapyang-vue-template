@@ -2,8 +2,9 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 
 const baseWebpackConfig = require('./webpack.base.config.js');
+const htmlWebpackConfig = require('./webpack.html.config.js');
 
-module.exports = merge(baseWebpackConfig, {
+module.exports = merge(baseWebpackConfig, htmlWebpackConfig, {
     devtool: 'eval-source-map',
     devServer: {
         contentBase: './dev',
