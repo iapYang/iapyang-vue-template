@@ -7,7 +7,7 @@ const customizeConfig =
 fs.existsSync(customizePath) ? require(customizePath) : {};
 
 module.exports = merge({
-    eslint: true,
     cliPath: 'dev',
     bundle: {},
+    title: 'Demo',
 }, customizeConfig);
