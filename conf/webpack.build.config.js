@@ -7,21 +7,18 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const baseWebpackConfig = require('./webpack.base.config.js');
 
-const htmlFiles = glob.sync('./dev/*.html');
-const htmlPlugins = htmlFiles.map((file, i) =>
-    new HtmlWebpackPlugin({
-        filename: path.basename(file),
-        template: file,
-        inject: false,
-        minify:{
-            removeComments: true,
-            collapseWhitespace: true,
-        },
-    }));
-
 module.exports = merge(baseWebpackConfig, {
     plugins: [
-        ...htmlPlugins,
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, '../conf/index.template.ejs'),
+            title: 'My Template',
+            inject: 'body',
+            favicon: path.join(process.cwd(), './dev/favicon.ico'),
+            minify:{
+                removeComments: true,
+                collapseWhitespace: true,
+            },
+        }),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
