@@ -18,13 +18,11 @@ jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
 
-console.log(entry);
-
 module.exports = {
     entry,
     output: {
         path: path.join(process.cwd(), 'dist'),
-        filename: '[name].js',
+        filename: 'script/[name].[hash].js',
     },
     module: {
         rules: [
