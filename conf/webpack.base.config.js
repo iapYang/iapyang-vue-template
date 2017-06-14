@@ -14,17 +14,6 @@ jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
 
-const eslintLoader = {
-    loader: 'eslint-loader',
-    options: {
-        failOnWarning: config.eslint,
-        failOnError: config.eslint,
-    },
-};
-const eslintLocal = path.join(process.cwd(), '.eslintrc');
-const eslintRemote = path.join(__dirname, '../.eslintrc');
-const eslintPath = fs.existsSync(eslintLocal) ? eslintLocal : eslintRemote;
-
 module.exports = {
     entry,
     output: {
@@ -37,7 +26,6 @@ module.exports = {
                 test: /\.js(x)?$/,
                 use: [
                     'babel-loader',
-                    eslintLoader,
                 ],
                 exclude: /node_module/,
             },
@@ -45,7 +33,6 @@ module.exports = {
                 test: /\.vue$/,
                 use: [
                     'vue-loader',
-                    eslintLoader,
                 ],
             },
             {
@@ -109,9 +96,6 @@ module.exports = {
                         localIdentName: '[path][name]---[local]---[hash:base64:5]',
                         camelCase: true,
                     },
-                },
-                eslint: {
-                    configFile: eslintPath,
                 },
             },
         }),
