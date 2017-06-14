@@ -14,6 +14,8 @@ This project is not finished yet, be careful before downloading it.
 
 ## Changelog
 
+> v0.4.0 we don't need to write index.html anymore
+>
 > v0.3.0 change part of the build structure & add gh-pages function
 >
 > v0.2.9 update dependencies versions
