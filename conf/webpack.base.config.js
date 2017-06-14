@@ -73,7 +73,6 @@ module.exports = {
                         name: 'static/[name].[ext]',
                     },
                 }],
-                // include: fontRegex,
             },
             {
                 test: /\.(jpg|jpeg|png|gif|svg)$/,
@@ -84,7 +83,6 @@ module.exports = {
                         name: 'static/[name].[ext]',
                     },
                 }],
-                // exclude: fontRegex,
             },
         ],
     },
