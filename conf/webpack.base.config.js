@@ -5,14 +5,20 @@ const webpack = require('webpack');
 const postcssConfig = require('./postcss.config.js');
 const config = require('./config.js');
 
-// the folder put font
-const fontRegex = /(font+\/)/;
-
-const jsFiles = glob.sync('./dev/script/*.js');
 const entry = {};
+// sync vendor files
+const vendorFiles = glob.sync('./dev/script/vendor/*.js');
+vendorFiles.forEach((file, i) => {
+    entry[path.basename(file, '.js')] = file;
+});
+
+// sync all js files
+const jsFiles = glob.sync('./dev/script/*.js');
 jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
+
+console.log(entry);
 
 module.exports = {
     entry,

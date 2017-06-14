@@ -8,7 +8,17 @@ module.exports = {
             title: 'My Template',
             inject: 'body',
             favicon: path.join(process.cwd(), './dev/favicon.ico'),
-            minify:{
+            chunksSortMode: (chunck1, chunck2) => {
+                if (chunck1.names[0] > chunck2.names[0]) {
+                    return 1;
+                }
+                if (chunck1.names[0] < chunck2.names[0]) {
+                    return -1;
+                }
+                
+                return 0;
+            },
+            minify: {
                 removeComments: true,
                 collapseWhitespace: true,
             },
