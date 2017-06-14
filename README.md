@@ -43,6 +43,7 @@ This project is not finished yet, be careful before downloading it.
     |   |——script/
     |   |   |——*.js
     |   |   |——plugin/
+    |   |   |——vendor/
     |   |——store/ vuex  
     |   |   |——actions.js
     |   |   |——getters.js
@@ -51,12 +52,11 @@ This project is not finished yet, be careful before downloading it.
     |   |   |——mutations.js
     |   |   |——state.js 
     |   |——style/ common style    
-    |   |——*.html
     |   |——router.js router    
     |   |——static/
     |——build/ output files
     |——.eslintignore
-    |——.eslintrc eslint files, if not use, default use mine   
+    |——.eslintrc   
     |——.gitignore    
     |——.package.json
     |——iapvt.config.js
@@ -91,11 +91,13 @@ This folder is optional.
 
 The `script` folder contains javascript files.
 
-`*.js` is the files which is one to one correspondence with `*.html`.
+The index.js file will be placed here.
 
-In additional, the eslint won't check files under `script/plugin`
+The  `plugins/` directory store files which cannot be used by npm
 
-This folder is optional.
+The  `vendor` directory store files won't be compiled by webpack and include as script tag in html
+
+This folder is required.
 
 #### The Store Directory
 
@@ -108,12 +110,6 @@ This folder is optional.
 The `style` folder contains common scss files.
 
 This folder is optional.
-
-#### *.html
-
-The `*.html` is file for website, use the `*.js` for script.
-
-This is required.
 
 #### router.js
 
@@ -129,16 +125,6 @@ It'll copy to static folder when build.
 
 This is optional.
 
-#### .eslintrc
-
-The `.eslintrc` is file for eslint check.
-
-If you create it on your side, the engine will use the one you created.
-
-Instead, It'll use mine default.
-
-This is optional.
-
 #### iapvt.config.js
 
 Override webpack engine.
@@ -146,8 +132,8 @@ Override webpack engine.
 ```javascript
 // Options
 {
-  // close eslint when compile, otherwise it'll fail to complie when eslint has error or warning
-  eslint: false,
+  // the generate html' title
+  title: 'demo',
 }
 ```
 
