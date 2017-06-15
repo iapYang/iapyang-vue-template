@@ -4,7 +4,7 @@
         <img src="../image/1.jpg" alt="">
         <div class="bg"></div>
 
-        <message></message>
+        <!--<message></message>-->
         <controller></controller>
 
         <router-view></router-view>
@@ -21,6 +21,13 @@ import Controller from './layout/Controller.vue';
 import Loading from 'vue-simple-loading';
 import VueVideo from 'vue-video-module';
 
+const aa = {
+    name: 'zhangsan',
+    sex: 'male',
+};
+
+const bb = {...aa};
+
 export default {
     data() {
         return {
@@ -31,7 +38,7 @@ export default {
         };
     },
     components: {
-        Message: () => import('./layout/Message.vue'),
+        // Message: () => import('./layout/Message.vue'),
         Controller,
         Loading,
         VueVideo,
