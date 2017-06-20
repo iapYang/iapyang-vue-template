@@ -4,7 +4,7 @@
         <img src="../image/1.jpg" alt="">
         <div class="bg"></div>
 
-        <!--<message></message>-->
+        <message></message>
         <controller></controller>
 
         <router-view></router-view>
@@ -28,6 +28,8 @@ const aa = {
 
 const bb = {...aa};
 
+console.log(bb);
+
 export default {
     data() {
         return {
@@ -38,7 +40,7 @@ export default {
         };
     },
     components: {
-        // Message: () => import('./layout/Message.vue'),
+        Message: () => import('./layout/Message.vue'),
         Controller,
         Loading,
         VueVideo,

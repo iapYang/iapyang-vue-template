@@ -18,6 +18,8 @@ jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
 
+const babelOptions = require('./babel');
+
 module.exports = {
     entry,
     output: {
@@ -28,9 +30,10 @@ module.exports = {
         rules: [
             {
                 test: /\.js(x)?$/,
-                use: [
-                    'babel-loader',
-                ],
+                use: {
+                    loader: 'babel-loader',
+                    options: babelOptions,
+                },
                 exclude: /node_module/,
             },
             {
@@ -95,6 +98,7 @@ module.exports = {
                     loaders: {
                         sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
                         scss: 'style-loader!css-loader!postcss-loader!sass-loader',
+                        js: `babel-loader?${JSON.stringify(babelOptions)}`,
                     },
                     cssModules: {
                         localIdentName: '[path][name]---[local]---[hash:base64:5]',
