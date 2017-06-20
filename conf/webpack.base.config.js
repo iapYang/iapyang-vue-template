@@ -1,9 +1,11 @@
 const path = require('path');
 const glob = require('glob');
-const fs = require('fs');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const postcssConfig = require('./postcss.config.js');
 const config = require('./config.js');
+const babelOptions = require('./babel');
 
 const entry = {};
 // sync vendor files
@@ -17,8 +19,6 @@ const jsFiles = glob.sync('./dev/script/*.js');
 jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
-
-const babelOptions = require('./babel');
 
 module.exports = {
     entry,
@@ -99,6 +99,10 @@ module.exports = {
                         sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
                         scss: 'style-loader!css-loader!postcss-loader!sass-loader',
                         js: `babel-loader?${JSON.stringify(babelOptions)}`,
+                        css: ExtractTextPlugin.extract({
+                            use: 'css-loader',
+                            fallback: 'vue-style-loader',
+                        }),
                     },
                     cssModules: {
                         localIdentName: '[path][name]---[local]---[hash:base64:5]',
