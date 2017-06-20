@@ -2,7 +2,7 @@ module.exports = {
     babelrc: false,
     presets: [
         [
-            'es2015',
+            'env',
             {
                 modules: false,
             },
