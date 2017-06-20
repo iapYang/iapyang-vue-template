@@ -8,12 +8,10 @@
 
 [![NPM](https://nodei.co/npm-dl/iapyang-vue-template.png?months=1&height=3)](https://nodei.co/npm/iapyang-vue-template/)
 
-## Attention
-
-This project is not finished yet, be careful before downloading it.
-
 ## Changelog
 
+> v0.4.1 hot fix! fix babel-loader not working fine.
+>
 > v0.4.0 we don't need to write index.html anymore
 >
 > v0.3.0 change part of the build structure & add gh-pages function
@@ -27,7 +25,6 @@ This project is not finished yet, be careful before downloading it.
 - language：vue
 - style：sass+postcss
 - javascript：es6
-- grammar check：ESLint
 - pack：webpack
 
 ## Directory Structure
@@ -37,7 +34,7 @@ This project is not finished yet, be careful before downloading it.
     |——dev/    
     |   |——component/ all vue component    
     |   |   |——common/ common component can be used in global
-    |   |   |——layout/ 
+    |   |   |——layout/ component to build pages
     |   |   |——view/ route page  
     |   |   |——App.vue export vue    
     |   |——font/  
@@ -154,7 +151,10 @@ In package.json, add scripts.
 ```json
 {
   "scripts": {
-    "iapvt": "iapvt"
+    "dev": "iapvt",
+    "build": "iapvt build",
+    "cli": "iapvt cli",
+    "gh": "iapvt gh"
   }
 }
 ```
@@ -163,16 +163,16 @@ In package.json, add scripts.
 
 ```javascript
 // for develop
-npm run iapvt
+npm run dev
 // for build
-npm run iapvt build
+npm run build
 // for upload to git-pages
-npm run iapvt gh
+npm run gh
 // for generate blank runable structure
-npm run iapvt cli
+npm run cli
 // for generate blank runable structure without router files
-npm run iapvt cli -r
+npm run cli -r
 // for generate blank runable structure without vuex files
-npm run iapvt cli -s
+npm run cli -s
 ```
 
