@@ -97,10 +97,14 @@ module.exports = {
                     postcss: postcssConfig.plugins,
                     loaders: {
                         sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
-                        scss: 'style-loader!css-loader!postcss-loader!sass-loader',
+                        // scss: 'style-loader!css-loader!postcss-loader!sass-loader',
                         js: `babel-loader?${JSON.stringify(babelOptions)}`,
-                        css: ExtractTextPlugin.extract({
-                            use: 'css-loader',
+                        scss: ExtractTextPlugin.extract({
+                            use: [
+                                'css-loader',
+                                'postcss-loader',
+                                'sass-loader',
+                            ],
                             fallback: 'vue-style-loader',
                         }),
                     },
@@ -111,5 +115,6 @@ module.exports = {
                 },
             },
         }),
+        new ExtractTextPlugin('index.css'),
     ],
 };
