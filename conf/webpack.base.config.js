@@ -7,6 +7,8 @@ const postcssConfig = require('./postcss.config.js');
 const config = require('./config.js');
 const babelOptions = require('./babel');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const entry = {};
 // sync vendor files
 const vendorFiles = glob.sync('./dev/script/vendor/*.js');
@@ -19,6 +21,23 @@ const jsFiles = glob.sync('./dev/script/*.js');
 jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
+
+const defaultPlugins = [
+    new webpack.LoaderOptionsPlugin({
+        options: {
+            postcss: postcssConfig.plugins,
+        },
+    }),
+];
+
+const prodPlugins = [
+    ...defaultPlugins,
+    new ExtractTextPlugin('index.css'),
+];
+
+const devPlugins = [
+    ...defaultPlugins,
+];
 
 module.exports = {
     entry,
@@ -38,9 +57,28 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                use: [
-                    'vue-loader',
-                ],
+                use: {
+                    loader: 'vue-loader',
+                    options: {
+                        postcss: postcssConfig.plugins,
+                        loaders: {
+                            sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
+                            scss: isProd ? ExtractTextPlugin.extract({
+                                use: [
+                                    'css-loader',
+                                    'postcss-loader',
+                                    'sass-loader',
+                                ],
+                                fallback: 'vue-style-loader',
+                            }) : 'style-loader!css-loader!postcss-loader!sass-loader',
+                            js: `babel-loader?${JSON.stringify(babelOptions)}`,
+                        },
+                        cssModules: {
+                            localIdentName: '[path][name]---[local]---[hash:base64:5]',
+                            camelCase: true,
+                        },
+                    },
+                },
             },
             {
                 test: /\.css$/,
@@ -89,32 +127,5 @@ module.exports = {
             'node_modules',
         ],
     },
-    plugins: [
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: postcssConfig.plugins,
-                vue: {
-                    postcss: postcssConfig.plugins,
-                    loaders: {
-                        sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
-                        // scss: 'style-loader!css-loader!postcss-loader!sass-loader',
-                        js: `babel-loader?${JSON.stringify(babelOptions)}`,
-                        scss: ExtractTextPlugin.extract({
-                            use: [
-                                'css-loader',
-                                'postcss-loader',
-                                'sass-loader',
-                            ],
-                            fallback: 'vue-style-loader',
-                        }),
-                    },
-                    cssModules: {
-                        localIdentName: '[path][name]---[local]---[hash:base64:5]',
-                        camelCase: true,
-                    },
-                },
-            },
-        }),
-        new ExtractTextPlugin('index.css'),
-    ],
+    plugins: isProd ? prodPlugins : devPlugins,
 };
