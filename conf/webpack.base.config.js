@@ -16,6 +16,7 @@ const entry = {};
 const jsFiles = glob.sync('./dev/script/*.js');
 jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
+});
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: path.join(__dirname, '../conf/index.template.ejs'),
