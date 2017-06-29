@@ -12,33 +12,16 @@ const babelOptions = require('./babel');
 const isProd = process.env.NODE_ENV === 'production';
 
 const entry = {};
-// sync vendor files
-const vendorFiles = glob.sync('./dev/script/vendor/*.js');
-vendorFiles.forEach((file, i) => {
-    entry[path.basename(file, '.js')] = file;
-});
-
 // sync all js files
 const jsFiles = glob.sync('./dev/script/*.js');
 jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
-});
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: path.join(__dirname, '../conf/index.template.ejs'),
     title: config.title,
     inject: 'body',
     favicon: path.join(process.cwd(), './dev/favicon.ico'),
-    chunksSortMode: (chunck1, chunck2) => {
-        if (chunck1.names[0] > chunck2.names[0]) {
-            return 1;
-        }
-        if (chunck1.names[0] < chunck2.names[0]) {
-            return -1;
-        }
-
-        return 0;
-    },
     minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -53,13 +36,27 @@ const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
     },
 });
 
+const commonsChunkPlugins = [
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks(module) {
+            return module.context && module.context.includes('node_modules');
+        },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest', // But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+    }),
+];
+
 const plugins = {
     production: [
+        ...commonsChunkPlugins,
         htmlWebpackPlugin,
         new ExtractTextPlugin('index.css'),
         uglifyJsPlugin,
     ],
     development: [
+        ...commonsChunkPlugins,
         htmlWebpackPlugin,
     ],
     bundle: [

@@ -4,7 +4,7 @@
         <img src="../image/1.jpg" alt="">
         <div class="bg"></div>
 
-        <message></message>
+        <!--<message></message>-->
         <controller></controller>
 
         <router-view></router-view>
@@ -40,7 +40,7 @@ export default {
         };
     },
     components: {
-        Message: () => import('./layout/Message.vue'),
+        // Message: () => import('./layout/Message.vue'),
         Controller,
         Loading,
         VueVideo,
