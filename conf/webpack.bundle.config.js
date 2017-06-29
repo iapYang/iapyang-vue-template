@@ -1,8 +1,6 @@
 const path = require('path');
-const glob = require('glob');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const fs = require('fs');
 const baseWebpackConfig = require('./webpack.base.config.js');
 const config = require('./config.js');
 
@@ -13,13 +11,4 @@ module.exports = merge(baseWebpackConfig, {
         filename: 'index.js',
         libraryTarget: 'umd',
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: false,
-                drop_console: true,
-            },
-        }),
-    ],
 }, config.bundle);

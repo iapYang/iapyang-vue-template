@@ -1,24 +1,69 @@
 const path = require('path');
 const glob = require('glob');
-const fs = require('fs');
 const webpack = require('webpack');
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const postcssConfig = require('./postcss.config.js');
 const config = require('./config.js');
+const babelOptions = require('./babel');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 const entry = {};
-// sync vendor files
-const vendorFiles = glob.sync('./dev/script/vendor/*.js');
-vendorFiles.forEach((file, i) => {
-    entry[path.basename(file, '.js')] = file;
-});
-
 // sync all js files
 const jsFiles = glob.sync('./dev/script/*.js');
 jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
 
-const babelOptions = require('./babel');
+const htmlWebpackPlugin = new HtmlWebpackPlugin({
+    template: path.join(__dirname, '../conf/index.template.ejs'),
+    title: config.title,
+    inject: 'body',
+    favicon: path.join(process.cwd(), './dev/favicon.ico'),
+    minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+    },
+});
+
+const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+    compress: {
+        warnings: false,
+        drop_console: true,
+    },
+});
+
+const commonsChunkPlugins = [
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks(module) {
+            return module.context && module.context.includes('node_modules');
+        },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest', // But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+    }),
+];
+
+const plugins = {
+    production: [
+        ...commonsChunkPlugins,
+        htmlWebpackPlugin,
+        new ExtractTextPlugin('index.css'),
+        uglifyJsPlugin,
+    ],
+    development: [
+        ...commonsChunkPlugins,
+        htmlWebpackPlugin,
+    ],
+    bundle: [
+        uglifyJsPlugin,
+    ],
+};
 
 module.exports = {
     entry,
@@ -38,9 +83,28 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                use: [
-                    'vue-loader',
-                ],
+                use: {
+                    loader: 'vue-loader',
+                    options: {
+                        postcss: postcssConfig.plugins,
+                        loaders: {
+                            sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
+                            scss: isProd ? ExtractTextPlugin.extract({
+                                use: [
+                                    'css-loader',
+                                    'postcss-loader',
+                                    'sass-loader',
+                                ],
+                                fallback: 'vue-style-loader',
+                            }) : 'style-loader!css-loader!postcss-loader!sass-loader',
+                            js: `babel-loader?${JSON.stringify(babelOptions)}`,
+                        },
+                        cssModules: {
+                            localIdentName: '[path][name]---[local]---[hash:base64:5]',
+                            camelCase: true,
+                        },
+                    },
+                },
             },
             {
                 test: /\.css$/,
@@ -93,19 +157,8 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: postcssConfig.plugins,
-                vue: {
-                    postcss: postcssConfig.plugins,
-                    loaders: {
-                        sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
-                        scss: 'style-loader!css-loader!postcss-loader!sass-loader',
-                        js: `babel-loader?${JSON.stringify(babelOptions)}`,
-                    },
-                    cssModules: {
-                        localIdentName: '[path][name]---[local]---[hash:base64:5]',
-                        camelCase: true,
-                    },
-                },
             },
         }),
+        ...plugins[process.env.NODE_ENV],
     ],
 };
