@@ -1,7 +1,9 @@
 const path = require('path');
 const glob = require('glob');
 const webpack = require('webpack');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const postcssConfig = require('./postcss.config.js');
 const config = require('./config.js');
@@ -22,22 +24,48 @@ jsFiles.forEach((file, i) => {
     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
 });
 
-const defaultPlugins = [
-    new webpack.LoaderOptionsPlugin({
-        options: {
-            postcss: postcssConfig.plugins,
-        },
-    }),
-];
+const htmlWebpackPlugin = new HtmlWebpackPlugin({
+    template: path.join(__dirname, '../conf/index.template.ejs'),
+    title: config.title,
+    inject: 'body',
+    favicon: path.join(process.cwd(), './dev/favicon.ico'),
+    chunksSortMode: (chunck1, chunck2) => {
+        if (chunck1.names[0] > chunck2.names[0]) {
+            return 1;
+        }
+        if (chunck1.names[0] < chunck2.names[0]) {
+            return -1;
+        }
 
-const prodPlugins = [
-    ...defaultPlugins,
-    new ExtractTextPlugin('index.css'),
-];
+        return 0;
+    },
+    minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+    },
+});
 
-const devPlugins = [
-    ...defaultPlugins,
-];
+const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+    compress: {
+        warnings: false,
+        drop_console: true,
+    },
+});
+
+const plugins = {
+    production: [
+        htmlWebpackPlugin,
+        new ExtractTextPlugin('index.css'),
+        uglifyJsPlugin,
+    ],
+    development: [
+        htmlWebpackPlugin,
+    ],
+    bundle: [
+        uglifyJsPlugin,
+    ],
+};
 
 module.exports = {
     entry,
@@ -127,5 +155,12 @@ module.exports = {
             'node_modules',
         ],
     },
-    plugins: isProd ? prodPlugins : devPlugins,
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: postcssConfig.plugins,
+            },
+        }),
+        ...plugins[process.env.NODE_ENV],
+    ],
 };

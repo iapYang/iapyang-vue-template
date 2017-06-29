@@ -4,7 +4,7 @@
   "description": "a simple vue template",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
+    "dev": "NODE_ENV=development webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
     "build": "rimraf dist && NODE_ENV=production webpack --progress --config ./conf/webpack.build.config.js",
     "bundle": "webpack --progress --config ./conf/webpack.bundle.config.js",
     "gh": "node ./bin/iapvt.js gh",
