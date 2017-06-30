@@ -34,31 +34,6 @@ module.exports = {
                 exclude: /node_module/,
             },
             {
-                test: /\.vue$/,
-                use: {
-                    loader: 'vue-loader',
-                    options: {
-                        postcss: postcssConfig.plugins,
-                        loaders: {
-                            sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
-                            scss: isProd ? ExtractTextPlugin.extract({
-                                use: [
-                                    'css-loader',
-                                    'postcss-loader',
-                                    'sass-loader',
-                                ],
-                                fallback: 'vue-style-loader',
-                            }) : 'style-loader!css-loader!postcss-loader!sass-loader',
-                            js: `babel-loader?${JSON.stringify(babelOptions)}`,
-                        },
-                        cssModules: {
-                            localIdentName: '[path][name]---[local]---[hash:base64:5]',
-                            camelCase: true,
-                        },
-                    },
-                },
-            },
-            {
                 test: /\.css$/,
                 use: [
                     'style-loader',
@@ -93,6 +68,31 @@ module.exports = {
                         name: 'static/[name].[ext]',
                     },
                 }],
+            },
+            {
+                test: /\.vue$/,
+                use: {
+                    loader: 'vue-loader',
+                    options: {
+                        postcss: postcssConfig.plugins,
+                        loaders: {
+                            sass: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax',
+                            scss: isProd ? ExtractTextPlugin.extract({
+                                use: [
+                                    'css-loader',
+                                    'postcss-loader',
+                                    'sass-loader',
+                                ],
+                                fallback: 'vue-style-loader',
+                            }) : 'style-loader!css-loader!postcss-loader!sass-loader',
+                            js: `babel-loader?${JSON.stringify(babelOptions)}`,
+                        },
+                        cssModules: {
+                            localIdentName: '[path][name]---[local]---[hash:base64:5]',
+                            camelCase: true,
+                        },
+                    },
+                },
             },
         ],
     },
