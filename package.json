@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
-    "build": "rimraf dist && NODE_ENV=production webpack --progress --config ./conf/webpack.build.config.js",
+    "build": "NODE_ENV=production webpack --progress --config ./conf/webpack.build.config.js",
     "bundle": "webpack --progress --config ./conf/webpack.bundle.config.js",
     "gh": "node ./bin/iapvt.js gh",
     "cli": "node ./bin/iapvt-cli.js",
@@ -48,6 +48,7 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "4.0.1",
     "css-loader": "0.28.2",
     "extract-text-webpack-plugin": "^2.1.2",

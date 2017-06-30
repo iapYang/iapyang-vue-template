@@ -10,8 +10,6 @@ const plugins = require('./webpack.plugin.config');
 
 const isProd = process.env.NODE_ENV === 'production';
 
-console.log(plugins);
-
 const entry = {};
 // sync all js files
 const jsFiles = glob.sync('./dev/script/*.js');
