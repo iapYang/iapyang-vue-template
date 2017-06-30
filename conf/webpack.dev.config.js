@@ -10,6 +10,8 @@ module.exports = merge(baseWebpackConfig, {
         host: '0.0.0.0',
         open: true,
         hot: true,
+        disableHostCheck: true,
+        openPage: '',
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
