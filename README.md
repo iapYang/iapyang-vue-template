@@ -6,10 +6,16 @@
 
 [![NPM](https://nodei.co/npm/iapyang-vue-template.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/iapyang-vue-template/)
 
-[![NPM](https://nodei.co/npm-dl/iapyang-vue-template.png?months=1&height=3)](https://nodei.co/npm/iapyang-vue-template/)
+[![NPM](https://nodei.co/npm-dl/iapyang-vue-template.png?months=3&height=3)](https://nodei.co/npm/iapyang-vue-template/)
 
 ## Changelog
 
+> v0.5.0 officially remove vendor and plugins folder, if you wan to use js can't be required, try [imports-loader](https://github.com/webpack-contrib/imports-loader)
+>
+> ​            update dependencies
+>
+> ​            add template option
+>
 > v0.4.1 hot fix! fix babel-loader not working fine.
 >
 > v0.4.0 we don't need to write index.html anymore
@@ -42,7 +48,6 @@
     |   |——script/
     |   |   |——*.js
     |   |   |——plugin/
-    |   |   |——vendor/
     |   |——store/ vuex  
     |   |   |——actions.js
     |   |   |——getters.js
@@ -92,10 +97,6 @@ The `script` folder contains javascript files.
 
 The index.js file will be placed here.
 
-The  `plugins/` directory store files which cannot be used by npm
-
-The  `vendor` directory store files won't be compiled by webpack and include as script tag in html
-
 This folder is required.
 
 #### The Store Directory
@@ -133,6 +134,8 @@ Override webpack engine.
 {
   // the generate html' title
   title: 'demo',
+  // template html files
+  tempalte: path.reslove('absoult/path/to/template.html'),
 }
 ```
 

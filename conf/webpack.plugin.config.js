@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config.js');
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
-    template: path.join(__dirname, '../conf/index.template.ejs'),
+    template: config.template || path.join(__dirname, '../conf/index.template.ejs'),
     title: config.title,
     inject: 'body',
     favicon: path.join(process.cwd(), './dev/favicon.ico'),
