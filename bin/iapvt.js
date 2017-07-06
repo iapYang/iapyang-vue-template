@@ -28,7 +28,7 @@ const webpackCmds = new Set([
 ]);
 
 const nodeStatus = {
-    defaultCommand: 'development',
+    dev: 'development',
     build: 'production',
     bundle: 'bundle',
 };
