@@ -4,10 +4,7 @@
 
 <script>
 
-export default {
-    data() {},
-    components: {},
-};
+export default {};
 </script>
 
 <style lang="scss">
