@@ -10,4 +10,5 @@ module.exports = merge({
     cliPath: 'dev',
     bundle: {},
     title: 'Demo',
+    rules:[{}],
 }, customizeConfig);

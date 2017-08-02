@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssConfig = require('./postcss.config.js');
 const babelOptions = require('./babel');
 const plugins = require('./webpack.plugin.config');
+const config = require('./config');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -94,6 +95,7 @@ module.exports = {
                     },
                 },
             },
+            ...config.rules,
         ],
     },
     resolve: {
