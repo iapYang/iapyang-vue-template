@@ -4,8 +4,8 @@
   "description": "a simple vue template",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
-    "build": "NODE_ENV=production webpack --progress --config ./conf/webpack.build.config.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --config ./conf/webpack.build.config.js",
     "bundle": "webpack --progress --config ./conf/webpack.bundle.config.js",
     "gh": "node ./bin/iapvt.js gh",
     "cli": "node ./bin/iapvt-cli.js",
@@ -56,6 +56,7 @@
     "file-loader": "0.11.2",
     "gh-pages": "1.0.0",
     "html-webpack-plugin": "2.29.0",
+    "ip": "1.1.5",
     "ncp": "2.0.0",
     "node-sass": "4.5.3",
     "postcss-css-variables": "0.7.0",
