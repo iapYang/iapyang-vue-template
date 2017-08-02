@@ -10,6 +10,8 @@
 
 ## Changelog
 
+> v0.5.2 on windows still use ip
+>
 > v0.5.1 add capabilities to windows
 >
 > v0.5.0 officially remove vendor and plugins folder, if you wan to use js can't be required, try [imports-loader](https://github.com/webpack-contrib/imports-loader)
