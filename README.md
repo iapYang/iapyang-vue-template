@@ -10,6 +10,10 @@
 
 ## Changelog
 
+> v0.5.4 add bundle option
+>
+> v0.5.3 fix OS node bug
+>
 > v0.5.2 on windows still use ip
 >
 > v0.5.1 add capabilities to windows
@@ -134,12 +138,19 @@ This is optional.
 Override webpack engine.
 
 ```javascript
+const path = require('path');
+
 // Options
 {
   // the generate html' title
   title: 'demo',
   // template html files
-  tempalte: path.reslove('absoult/path/to/template.html'),
+  tempalte: path.reslove('path/to/template.html'),
+  // bundle options
+  bundle: {
+    path: 'path/to/needBundleFile.js',
+    name: 'libraryNmae'
+  },
 }
 ```
 

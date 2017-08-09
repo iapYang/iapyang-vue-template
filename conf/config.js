@@ -8,7 +8,10 @@ fs.existsSync(customizePath) ? require(customizePath) : {};
 
 module.exports = merge({
     cliPath: 'dev',
-    bundle: {},
-    title: 'Demo',
+    bundle: {
+        path: './dev/component/src/index.js',
+        name: 'library',
+    },
+    title: 'Index',
     rules:[{}],
 }, customizeConfig);
