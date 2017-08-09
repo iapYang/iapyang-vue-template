@@ -10,6 +10,8 @@
 
 ## Changelog
 
+> v0.5.5 bug fix and test
+>
 > v0.5.4 add bundle option
 >
 > v0.5.3 fix OS node bug
