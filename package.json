@@ -4,9 +4,9 @@
   "description": "a simple vue template",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --config ./conf/webpack.dev.config.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --config ./conf/webpack.build.config.js",
-    "bundle": "webpack --progress --config ./conf/webpack.bundle.config.js",
+    "dev": "node ./bin/iapvt.js",
+    "build": "node ./bin/iapvt.js build",
+    "bundle": "node ./bin/iapvt.js bundle",
     "gh": "node ./bin/iapvt.js gh",
     "cli": "node ./bin/iapvt-cli.js",
     "check": "ncu",
