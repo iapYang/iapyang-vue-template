@@ -10,6 +10,8 @@
 
 ## Changelog
 
+> v0.5.6 update template & for now, not using vue, the css imported in js can be extracted too
+>
 > v0.5.5 bug fix and test
 >
 > v0.5.4 add bundle option
