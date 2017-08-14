@@ -43,7 +43,14 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
+                use: isProd ? ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        'css-loader',
+                        'postcss-loader',
+                        'sass-loader',
+                    ],
+                }) : [
                     'style-loader',
                     'css-loader',
                     'postcss-loader',
