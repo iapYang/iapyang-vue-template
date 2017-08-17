@@ -6,16 +6,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = require('./config.js');
 
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
-    template: config.template,
-    title: config.title,
-    inject: 'body',
-    favicon: path.join(process.cwd(), './dev/favicon.ico'),
-    minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-    },
-});
+let htmls;
+
+if (typeof config.template === 'string') {
+    htmls = [config.template];
+} else {
+    htmls = config.template;
+}
+
+const htmlWebpackPlugins = htmls.map(html =>
+    new HtmlWebpackPlugin({
+        template: html,
+        title: config.title,
+        inject: 'body',
+        favicon: path.join(process.cwd(), './dev/favicon.ico'),
+        minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+        },
+    })
+);
 
 const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
     sourceMap: true,
@@ -40,13 +50,13 @@ const commonsChunkPlugins = [
 module.exports = {
     production: [
         ...commonsChunkPlugins,
-        htmlWebpackPlugin,
+        ...htmlWebpackPlugins,
         new ExtractTextPlugin('index.css'),
         uglifyJsPlugin,
     ],
     development: [
         ...commonsChunkPlugins,
-        htmlWebpackPlugin,
+        ...htmlWebpackPlugins,
     ],
     bundle: [
         uglifyJsPlugin,
