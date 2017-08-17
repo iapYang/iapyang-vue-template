@@ -2,35 +2,38 @@ const path = require('path');
 const fs = require('fs');
 const merge = require('webpack-merge');
 
-const isProd = process.env.NODE_ENV === 'production';
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const customizePath = path.join(process.cwd(), './iapvt.config.js');
 const customizeConfig =
     fs.existsSync(customizePath) ? require(customizePath) : {};
 
-module.exports = merge({
+const defaultHtml = {
+    template: path.join(__dirname, '../conf/index.template.ejs'),
+    title: 'index',
+    name: 'index.html',
+};
+
+let htmls;
+
+if (customizeConfig.htmlsOptions) {
+    if (customizeConfig.htmlsOptions.type === 'cover') {
+        htmls = customizeConfig.htmlsOptions.series.map(html =>
+            merge(defaultHtml, html)
+        );
+    } else {
+        htmls = [defaultHtml, ...customizeConfig.htmlsOptions.series];
+    }
+} else {
+    htmls = [defaultHtml];
+}
+
+const combinedConfig = merge({
     cliPath: 'dev',
     bundle: {
         path: './dev/component/src/index.js',
         name: 'library',
     },
-    title: 'Index',
-    template: path.join(__dirname, '../conf/index.template.ejs'),
-    rules: [{
-        test: /\.less$/,
-        use: isProd ? ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-                'css-loader',
-                'postcss-loader',
-                'less-loader',
-            ],
-        }) : [
-            'style-loader',
-            'css-loader',
-            'postcss-loader',
-            'less-loader',
-        ],
-    }],
+    htmls,
+    rules: [{}],
 }, customizeConfig);
+
+module.exports = combinedConfig;

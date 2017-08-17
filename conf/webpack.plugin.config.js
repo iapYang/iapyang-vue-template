@@ -6,26 +6,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = require('./config.js');
 
-let htmls;
+const htmlWebpackPlugins = config.htmls.map(html => {
+    console.log(html);
 
-if (typeof config.template === 'string') {
-    htmls = [config.template];
-} else {
-    htmls = config.template;
-}
-
-const htmlWebpackPlugins = htmls.map(html =>
-    new HtmlWebpackPlugin({
-        template: html,
-        title: config.title,
+    return new HtmlWebpackPlugin({
+        template: html.template,
+        title: html.title,
+        filename: `${html.name}.html`,
         inject: 'body',
         favicon: path.join(process.cwd(), './dev/favicon.ico'),
         minify: {
             removeComments: true,
             collapseWhitespace: true,
         },
-    })
-);
+    });
+});
 
 const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
     sourceMap: true,
