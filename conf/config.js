@@ -10,6 +10,7 @@ const defaultHtml = {
     template: path.join(__dirname, '../conf/index.template.ejs'),
     title: 'index',
     name: 'index',
+    chunks: [path.resolve(__dirname, '../dev/script/index.js')],
 };
 
 let htmls;
