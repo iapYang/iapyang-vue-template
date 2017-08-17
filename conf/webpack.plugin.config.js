@@ -13,6 +13,11 @@ const htmlWebpackPlugins = config.htmls.map(html => {
         template: html.template,
         title: html.title,
         filename: `${html.name}.html`,
+        chunks: [
+            'vendor',
+            'manifest',
+            ...html.entryArray.map(obj => obj.name),
+        ],
         inject: 'body',
         favicon: path.join(process.cwd(), './dev/favicon.ico'),
         minify: false,

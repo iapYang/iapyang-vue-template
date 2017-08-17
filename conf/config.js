@@ -10,18 +10,14 @@ const defaultHtml = {
     template: path.join(__dirname, '../conf/index.template.ejs'),
     title: 'index',
     name: 'index',
-    chunks: [path.resolve(__dirname, '../dev/script/index.js')],
+    entry: [path.resolve(__dirname, '../dev/script/index.js')],
 };
 
 let htmls;
 
 if (customizeConfig.htmlsOptions) {
     if (customizeConfig.htmlsOptions.type === 'cover') {
-        htmls = customizeConfig.htmlsOptions.series.map(html => {
-            const sep = path.sep(html.template);
-
-            return merge(defaultHtml, html);
-        });
+        htmls = customizeConfig.htmlsOptions.series.map(html => merge(defaultHtml, html));
     } else {
         htmls = [defaultHtml, ...customizeConfig.htmlsOptions.series];
     }
@@ -30,8 +26,21 @@ if (customizeConfig.htmlsOptions) {
         template: customizeConfig.template,
         title: customizeConfig.title || 'index',
         name: 'index',
+        entry: [defaultHtml.entry],
     }];
 }
+
+// generate js name
+htmls.forEach(html => {
+    html.entryArray = html.entry.map(entry => {
+        const parse = path.parse(entry);
+
+        return {
+            path: entry,
+            name: parse.name,
+        };
+    });
+});
 
 module.exports = merge({
     cliPath: 'dev',

@@ -13,10 +13,20 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const entry = {};
 // sync all js files
-const jsFiles = glob.sync('./dev/script/*.js');
-jsFiles.forEach((file, i) => {
-    entry[path.basename(file, '.js')] = ['babel-polyfill', file];
+// const jsFiles = glob.sync('./dev/script/*.js');
+// jsFiles.forEach((file, i) => {
+//     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
+// });
+
+
+// donnot forget when muilty js came
+config.htmls.forEach(html => {
+    html.entryArray.forEach(obj => {
+        entry[obj.name] = obj.path;
+    });
 });
+
+console.log(entry);
 
 module.exports = {
     entry,
