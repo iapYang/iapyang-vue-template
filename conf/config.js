@@ -16,6 +16,7 @@ module.exports = merge({
         name: 'library',
     },
     title: 'Index',
+    template: path.join(__dirname, '../conf/index.template.ejs'),
     rules: [{
         test: /\.less$/,
         use: isProd ? ExtractTextPlugin.extract({
