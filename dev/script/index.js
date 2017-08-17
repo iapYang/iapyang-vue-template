@@ -4,6 +4,8 @@ import router from '../router';
 import store from '../store/index';
 import App from '../component/App.vue';
 
+import '../style/example.less';
+
 const aa = {
     name: 'zhangsan',
     sex: 'male',
