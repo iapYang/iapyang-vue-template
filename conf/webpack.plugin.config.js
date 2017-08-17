@@ -15,10 +15,7 @@ const htmlWebpackPlugins = config.htmls.map(html => {
         filename: `${html.name}.html`,
         inject: 'body',
         favicon: path.join(process.cwd(), './dev/favicon.ico'),
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-        },
+        minify: false,
     });
 });
 

@@ -16,9 +16,11 @@ let htmls;
 
 if (customizeConfig.htmlsOptions) {
     if (customizeConfig.htmlsOptions.type === 'cover') {
-        htmls = customizeConfig.htmlsOptions.series.map(html =>
-            merge(defaultHtml, html)
-        );
+        htmls = customizeConfig.htmlsOptions.series.map(html => {
+            const sep = path.sep(html.template);
+
+            return merge(defaultHtml, html);
+        });
     } else {
         htmls = [defaultHtml, ...customizeConfig.htmlsOptions.series];
     }
@@ -30,7 +32,7 @@ if (customizeConfig.htmlsOptions) {
     }];
 }
 
-const combinedConfig = merge({
+module.exports = merge({
     cliPath: 'dev',
     bundle: {
         path: './dev/component/src/index.js',
@@ -39,5 +41,3 @@ const combinedConfig = merge({
     htmls,
     rules: [{}],
 }, customizeConfig);
-
-module.exports = combinedConfig;
