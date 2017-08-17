@@ -15,7 +15,7 @@ module.exports = {
         series: [{
             template: path.resolve(__dirname, './dev/view/demo.html'),
             title: 'demo',
-            name: 'demo.html',
+            name: 'demo',
         }],
     },
     rules: [{

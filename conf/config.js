@@ -9,7 +9,7 @@ const customizeConfig =
 const defaultHtml = {
     template: path.join(__dirname, '../conf/index.template.ejs'),
     title: 'index',
-    name: 'index.html',
+    name: 'index',
 };
 
 let htmls;
@@ -23,7 +23,11 @@ if (customizeConfig.htmlsOptions) {
         htmls = [defaultHtml, ...customizeConfig.htmlsOptions.series];
     }
 } else {
-    htmls = [defaultHtml];
+    htmls = [{
+        template: customizeConfig.template,
+        title: customizeConfig.title || 'index',
+        name: 'index',
+    }];
 }
 
 const combinedConfig = merge({
