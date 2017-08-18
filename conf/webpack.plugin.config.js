@@ -22,6 +22,8 @@ const htmlWebpackPlugins = config.htmls.map(html =>
     })
 );
 
+console.log(config.htmls[1].entryArray, htmlWebpackPlugins);
+
 const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
     sourceMap: true,
     compress: {

@@ -15,11 +15,14 @@ const defaultHtml = {
 
 let htmls;
 
+console.log(customizeConfig.htmlsOptions);
+
 if (customizeConfig.htmlsOptions) {
-    htmls = [...customizeConfig.htmlsOptions.series.map(html => merge(defaultHtml, html))];
-    
-    if (customizeConfig.htmlsOptions.type !== 'cover') {
-        htmls = [defaultHtml, ...htmls];
+    if (customizeConfig.htmlsOptions.type === 'cover') {
+        htmls = [...customizeConfig.htmlsOptions.series.map(html => merge(defaultHtml, html))];
+    } else {
+        htmls = [defaultHtml, ...customizeConfig.htmlsOptions
+            .series.map(html => merge(defaultHtml, html))];
     }
 } else {
     htmls = [{
@@ -40,6 +43,8 @@ htmls.forEach(html => {
             name: parse.name,
         };
     });
+
+    console.log('html', html);
 });
 
 module.exports = merge({

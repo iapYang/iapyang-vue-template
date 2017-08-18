@@ -34,6 +34,7 @@
     "babel-eslint": "^7.2.3",
     "eslint": "^4.1.1",
     "eslint-plugin-html": "^3.0.0",
+    "html-loader": "^0.5.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "vue-simple-loading": "^1.1.5",
