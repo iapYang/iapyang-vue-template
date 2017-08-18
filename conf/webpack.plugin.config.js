@@ -6,8 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = require('./config.js');
 
-const htmlWebpackPlugins = config.htmls.map(html =>
-    new HtmlWebpackPlugin({
+console.log(config.htmlsOptions.length);
+
+const htmlWebpackPlugins = config.htmlsOptions.map(html => {
+    console.log(html);
+    
+    return new HtmlWebpackPlugin({
         template: html.template,
         title: html.title,
         filename: `${html.name}.html`,
@@ -19,10 +23,8 @@ const htmlWebpackPlugins = config.htmls.map(html =>
         inject: 'body',
         favicon: path.join(process.cwd(), './dev/favicon.ico'),
         minify: false,
-    })
-);
-
-console.log(config.htmls[1].entryArray, htmlWebpackPlugins);
+    });
+});
 
 const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
     sourceMap: true,

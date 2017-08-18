@@ -6,36 +6,30 @@ const customizePath = path.join(process.cwd(), './iapvt.config.js');
 const customizeConfig =
     fs.existsSync(customizePath) ? require(customizePath) : {};
 
-const defaultHtml = {
+const defaultOption = {
     template: path.join(__dirname, '../conf/index.template.ejs'),
     title: 'index',
     name: 'index',
     entry: [path.resolve(__dirname, '../dev/script/index.js')],
 };
 
-let htmls;
-
-console.log(customizeConfig.htmlsOptions);
-
-if (customizeConfig.htmlsOptions) {
-    if (customizeConfig.htmlsOptions.type === 'cover') {
-        htmls = [...customizeConfig.htmlsOptions.series.map(html => merge(defaultHtml, html))];
-    } else {
-        htmls = [defaultHtml, ...customizeConfig.htmlsOptions
-            .series.map(html => merge(defaultHtml, html))];
-    }
-} else {
-    htmls = [{
-        template: customizeConfig.template,
-        title: customizeConfig.title || 'index',
-        name: 'index',
-        entry: [defaultHtml.entry],
-    }];
+if (!customizeConfig.htmlsOptions) {
+    customizeConfig.htmlsOptions = [{}];
 }
 
+customizeConfig.htmlsOptions = customizeConfig
+    .htmlsOptions.map(option => {
+        return {
+            template: option.template || defaultOption.template,
+            title: option.title || defaultOption.title,
+            name: option.name || defaultOption.name,
+            entry: option.entry || defaultOption.entry,
+        };
+    });
+
 // generate js name
-htmls.forEach(html => {
-    html.entryArray = html.entry.map(entry => {
+customizeConfig.htmlsOptions.forEach(option => {
+    option.entryArray = option.entry.map(entry => {
         const parse = path.parse(entry);
 
         return {
@@ -43,8 +37,6 @@ htmls.forEach(html => {
             name: parse.name,
         };
     });
-
-    console.log('html', html);
 });
 
 module.exports = merge({
@@ -53,6 +45,5 @@ module.exports = merge({
         path: './dev/component/src/index.js',
         name: 'library',
     },
-    htmls,
     rules: [{}],
 }, customizeConfig);

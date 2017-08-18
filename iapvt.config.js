@@ -4,21 +4,19 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     cliPath: 'tmp',
-    title: 'Index',
     bundle: {
         path: path.resolve('./dev/component/App.vue'),
         name: 'app',
     },
-    template: path.resolve(__dirname, './dev/view/demo.html'),
-    htmlsOptions: {
-        type: 'combine',
-        series: [{
-            template: path.resolve(__dirname, './dev/view/demo.html'),
-            title: 'demo',
-            name: 'demo/index',
-            entry: [path.resolve(__dirname, './dev/script/demo.js')],
-        }],
-    },
+    htmlsOptions: [{
+        title: 'Index',
+    }, {
+        template: path.resolve(__dirname, './dev/view/demo.html'),
+        title: 'demo',
+        name: 'demo/index',
+        entry: [path.resolve(__dirname, './dev/script/demo.js')],
+    }],
+    htmlsHandleType: 'combine',
     rules: [{
         test: /\.less$/,
         use: isProd ? ExtractTextPlugin.extract({

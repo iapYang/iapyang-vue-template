@@ -14,8 +14,8 @@ const isProd = process.env.NODE_ENV === 'production';
 const entry = {};
 
 // donnot forget when muilty js came
-config.htmls.forEach(html => {
-    html.entryArray.forEach(obj => {
+config.htmlsOptions.forEach(option => {
+    option.entryArray.forEach(obj => {
         entry[obj.name] = obj.path;
     });
 });
