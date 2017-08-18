@@ -17,6 +17,10 @@ if (!customizeConfig.htmlsOptions) {
     customizeConfig.htmlsOptions = [{}];
 }
 
+if (customizeConfig.htmlsHandleType === 'combine') {
+    customizeConfig.htmlsOptions.unshift(defaultOption);
+}
+
 customizeConfig.htmlsOptions = customizeConfig
     .htmlsOptions.map(option => {
         return {

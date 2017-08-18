@@ -9,8 +9,6 @@ module.exports = {
         name: 'app',
     },
     htmlsOptions: [{
-        title: 'Index',
-    }, {
         template: path.resolve(__dirname, './dev/view/demo.html'),
         title: 'demo',
         name: 'demo/index',
