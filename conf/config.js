@@ -16,10 +16,10 @@ const defaultHtml = {
 let htmls;
 
 if (customizeConfig.htmlsOptions) {
-    if (customizeConfig.htmlsOptions.type === 'cover') {
-        htmls = customizeConfig.htmlsOptions.series.map(html => merge(defaultHtml, html));
-    } else {
-        htmls = [defaultHtml, ...customizeConfig.htmlsOptions.series];
+    htmls = [...customizeConfig.htmlsOptions.series.map(html => merge(defaultHtml, html))];
+    
+    if (customizeConfig.htmlsOptions.type !== 'cover') {
+        htmls = [defaultHtml, ...htmls];
     }
 } else {
     htmls = [{

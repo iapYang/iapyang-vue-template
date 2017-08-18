@@ -12,12 +12,6 @@ const config = require('./config');
 const isProd = process.env.NODE_ENV === 'production';
 
 const entry = {};
-// sync all js files
-// const jsFiles = glob.sync('./dev/script/*.js');
-// jsFiles.forEach((file, i) => {
-//     entry[path.basename(file, '.js')] = ['babel-polyfill', file];
-// });
-
 
 // donnot forget when muilty js came
 config.htmls.forEach(html => {
@@ -25,8 +19,6 @@ config.htmls.forEach(html => {
         entry[obj.name] = obj.path;
     });
 });
-
-console.log(entry);
 
 module.exports = {
     entry,
