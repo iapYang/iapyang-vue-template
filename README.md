@@ -220,8 +220,3 @@ npm run cli -r
 // for generate blank runable structure without vuex files
 npm run cli -s
 ```
-
-## Checklist
-
-- [ ] Extra  css优化，不需要通过node环境变量
-- [ ] jsx支持
