@@ -10,35 +10,13 @@
 
 ## Changelog
 
-> V0.5.7 now we can add customized rules to webpack, see [less-demo](#iapvt.config.js)
+> V0.6.0 
 >
-> v0.5.6 update template & for now, not using vue, the css imported in js can be extracted too
+> 🚀 New Feature
 >
-> v0.5.5 bug fix and test
+> - Now we can add mulity htmls to render, please refer it in demo
 >
-> v0.5.4 add bundle option
->
-> v0.5.3 fix OS node bug
->
-> v0.5.2 on windows still use ip
->
-> v0.5.1 add capabilities to windows
->
-> v0.5.0 officially remove vendor and plugins folder, if you wan to use js can't be required, try [imports-loader](https://github.com/webpack-contrib/imports-loader)
->
-> ​            update dependencies
->
-> ​            add template option
->
-> v0.4.1 hot fix! fix babel-loader not working fine.
->
-> v0.4.0 we don't need to write index.html anymore
->
-> v0.3.0 change part of the build structure & add gh-pages function
->
-> v0.2.9 update dependencies versions
->
-> v0.2.8 add cli command for use, see [here](#configuration)
+> For more old changelog, please go to Changelog
 
 ## Env
 
