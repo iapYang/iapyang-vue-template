@@ -41,7 +41,7 @@ For changes in version v0.6.0 and up please go to [Readme](https://github.com/ia
 
 ## v0.5.2
 
-### 💅 Polish
+### 😢 Regression
 
 - On windows still use ip
 
