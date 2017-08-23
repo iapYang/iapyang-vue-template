@@ -10,35 +10,13 @@
 
 ## Changelog
 
-> V0.5.7 now we can add customized rules to webpack, see [less-demo](#iapvt.config.js)
+> V0.6.0 
 >
-> v0.5.6 update template & for now, not using vue, the css imported in js can be extracted too
+> 🚀 New Feature
 >
-> v0.5.5 bug fix and test
+> - Now we can add mulity htmls to render, please refer it in demo
 >
-> v0.5.4 add bundle option
->
-> v0.5.3 fix OS node bug
->
-> v0.5.2 on windows still use ip
->
-> v0.5.1 add capabilities to windows
->
-> v0.5.0 officially remove vendor and plugins folder, if you wan to use js can't be required, try [imports-loader](https://github.com/webpack-contrib/imports-loader)
->
-> ​            update dependencies
->
-> ​            add template option
->
-> v0.4.1 hot fix! fix babel-loader not working fine.
->
-> v0.4.0 we don't need to write index.html anymore
->
-> v0.3.0 change part of the build structure & add gh-pages function
->
-> v0.2.9 update dependencies versions
->
-> v0.2.8 add cli command for use, see [here](#configuration)
+> For more old changelog, please go to Changelog
 
 ## Env
 
@@ -143,45 +121,70 @@ This is optional.
 
 Override webpack engine.
 
-```javascript
-const path = require('path');
-const isProd = process.env.NODE_ENV === 'production';
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+- rules
+  - advanced use like less-loader, check here
 
-// Options
-{
-  // the generate html' title
-  title: 'demo',
-  // template html files
-  tempalte: path.reslove('path/to/template.html'),
-  // bundle options
-  bundle: {
-    path: 'path/to/needBundleFile.js',
-    name: 'libraryNmae'
-  },
+```javascript
+// used when you need more loader 
+
+module.exports = {
   rules: [{
-    test: /\.less$/,
-    // in order to extra style file when build
-    // you need download less & less-loader modules by yourself
-    // standard css compile rule demo
-    use: isProd ? ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        'css-loader',
-        'postcss-loader',
-        'less-loader',
-      ],
-    }) : [
-      'style-loader',
-      'css-loader',
-      'postcss-loader',
-      'less-loader',
-    ],
+      test: /\.(html)$/,
+      use: {
+        loader: 'html-loader',
+        options: {
+          attrs: [':data-src']
+        }
+      }  
+  }]
+};
+```
+
+
+
+- bundle 
+
+```javascript
+// export js can be used by CDN & commonJs & AMD
+
+const path = require('path');
+
+module.exports = {
+  bundle: {
+    // js location
+    path: path.resolve('./dev/component/App.vue'),
+    // library name
+    name: 'app',
+  },
+};
+```
+
+
+
+- htmlOptions
+  - for user use their own template, check this demo after updating
+
+```javascript
+// This is optional, if you use mine default template before, ignore this options
+// with this you can render more than one page
+
+const path = require('path');
+
+module.exports = {
+  htmlsOptions: [{
+    // template location
+    template: path.resolve(__dirname, './dev/view/demo.html'),
+    // output js name, like 'demo/index' means index.js in demos folder
+    name: 'demo/index',
+    // template js files, must be an array
+    entry: [path.resolve(__dirname, './dev/script/demo.js')],
   }],
+  // default is 'cover', will not render mine default template unless you set it 'combine'
+  htmlsHandleType: 'combine',
 }
 ```
 
- 
+
 
 ## Install
 
@@ -220,4 +223,3 @@ npm run cli -r
 // for generate blank runable structure without vuex files
 npm run cli -s
 ```
-

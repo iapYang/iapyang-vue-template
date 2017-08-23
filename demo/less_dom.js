@@ -2,20 +2,13 @@ const path = require('path');
 const isProd = process.env.NODE_ENV === 'production';
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+// Options
 module.exports = {
-    cliPath: 'tmp',
-    bundle: {
-        path: path.resolve('./dev/component/App.vue'),
-        name: 'app',
-    },
-    htmlsOptions: [{
-        template: path.resolve(__dirname, './dev/view/demo.html'),
-        name: 'demo/index',
-        entry: [path.resolve(__dirname, './dev/script/demo.js')],
-    }],
-    htmlsHandleType: 'combine',
     rules: [{
         test: /\.less$/,
+        // in order to extra style file when build
+        // you need download less & less-loader modules by yourself
+        // standard css compile rule demo
         use: isProd ? ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
