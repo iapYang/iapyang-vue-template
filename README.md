@@ -121,45 +121,70 @@ This is optional.
 
 Override webpack engine.
 
-```javascript
-const path = require('path');
-const isProd = process.env.NODE_ENV === 'production';
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+- rules
+  - advanced use like less-loader, check here
 
-// Options
-{
-  // the generate html' title
-  title: 'demo',
-  // template html files
-  tempalte: path.reslove('path/to/template.html'),
-  // bundle options
-  bundle: {
-    path: 'path/to/needBundleFile.js',
-    name: 'libraryNmae'
-  },
+```javascript
+// used when you need more loader 
+
+module.exports = {
   rules: [{
-    test: /\.less$/,
-    // in order to extra style file when build
-    // you need download less & less-loader modules by yourself
-    // standard css compile rule demo
-    use: isProd ? ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        'css-loader',
-        'postcss-loader',
-        'less-loader',
-      ],
-    }) : [
-      'style-loader',
-      'css-loader',
-      'postcss-loader',
-      'less-loader',
-    ],
+      test: /\.(html)$/,
+      use: {
+        loader: 'html-loader',
+        options: {
+          attrs: [':data-src']
+        }
+      }  
+  }]
+};
+```
+
+
+
+- bundle 
+
+```javascript
+// export js can be used by CDN & commonJs & AMD
+
+const path = require('path');
+
+module.exports = {
+  bundle: {
+    // js location
+    path: path.resolve('./dev/component/App.vue'),
+    // library name
+    name: 'app',
+  },
+};
+```
+
+
+
+- htmlOptions
+  - for user use their own template, check this demo after updating
+
+```javascript
+// This is optional, if you use mine default template before, ignore this options
+// with this you can render more than one page
+
+const path = require('path');
+
+module.exports = {
+  htmlsOptions: [{
+    // template location
+    template: path.resolve(__dirname, './dev/view/demo.html'),
+    // output js name, like 'demo/index' means index.js in demos folder
+    name: 'demo/index',
+    // template js files, must be an array
+    entry: [path.resolve(__dirname, './dev/script/demo.js')],
   }],
+  // default is 'cover', will not render mine default template unless you set it 'combine'
+  htmlsHandleType: 'combine',
 }
 ```
 
- 
+
 
 ## Install
 

@@ -10,7 +10,6 @@ module.exports = {
     },
     htmlsOptions: [{
         template: path.resolve(__dirname, './dev/view/demo.html'),
-        title: 'demo',
         name: 'demo/index',
         entry: [path.resolve(__dirname, './dev/script/demo.js')],
     }],
