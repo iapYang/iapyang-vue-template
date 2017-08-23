@@ -14,9 +14,9 @@
 >
 > 🚀 New Feature
 >
-> - Now we can add mulity htmls to render, please refer it in demo
+> - Now we can add mulity htmls to render, please refer it in [demo](https://github.com/iapYang/iapyang-vue-template/blob/master/demo/htmlOptions.js)
 >
-> For more old changelog, please go to Changelog
+> For more old changelog, please go to [Changelog](https://github.com/iapYang/iapyang-vue-template/blob/master/CHANGELOG.MD)
 
 ## Env
 
@@ -122,7 +122,7 @@ This is optional.
 Override webpack engine.
 
 - rules
-  - advanced use like less-loader, check here
+  - advanced use like less-loader, [check here](https://github.com/iapYang/iapyang-vue-template/blob/master/demo/less_dom.js)
 
 ```javascript
 // used when you need more loader 
@@ -162,7 +162,7 @@ module.exports = {
 
 
 - htmlOptions
-  - for user use their own template, check this demo after updating
+  - for user use their own template, [check this demo](https://github.com/iapYang/iapyang-vue-template/blob/master/demo/htmlOptions.js) after updating
 
 ```javascript
 // This is optional, if you use mine default template before, ignore this options

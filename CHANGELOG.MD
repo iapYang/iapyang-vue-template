@@ -8,7 +8,7 @@ For changes in version v0.6.0 and up please go to [Readme](https://github.com/ia
 
 ### 🚀 New Feature
 
-- Now we can add customized rules to webpack, see less_demo
+- Now we can add customized rules to webpack, see [less demo](https://github.com/iapYang/iapyang-vue-template/blob/master/demo/less_dom.js)
 
 ## v0.5.6
 
