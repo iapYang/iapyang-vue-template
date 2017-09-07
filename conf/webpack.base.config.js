@@ -1,6 +1,7 @@
 const path = require('path');
 const glob = require('glob');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -26,7 +27,7 @@ module.exports = {
         path: path.join(process.cwd(), 'dist'),
         filename: 'script/[name].[hash].js',
     },
-    module: {
+    module: merge.smart({
         rules: [
             {
                 test: /\.js(x)?$/,
@@ -104,9 +105,10 @@ module.exports = {
                     },
                 },
             },
-            ...config.rules,
         ],
-    },
+    }, {
+        rules: config.rules,
+    }),
     resolve: {
         alias: {
             vue$: 'vue/dist/vue.js',
