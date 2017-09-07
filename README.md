@@ -10,7 +10,7 @@
 
 ## Changelog
 
-> V0.6.1 
+> V0.6.2 
 >
 > 🐛 Bug Fix
 >

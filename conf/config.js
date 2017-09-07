@@ -10,7 +10,7 @@ const defaultOption = {
     template: path.join(__dirname, '../conf/index.template.ejs'),
     title: 'index',
     name: 'index',
-    entry: [path.resolve(process.cwd(), '../dev/script/index.js')],
+    entry: [path.resolve(process.cwd(), './dev/script/index.js')],
 };
 
 if (!customizeConfig.htmlsOptions) {
