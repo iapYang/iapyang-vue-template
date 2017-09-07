@@ -4,6 +4,12 @@ For latest changes in version  please go to [Readme](https://github.com/iapYang/
 
 # Old Changelog
 
+## v0.6.2 
+
+### 🐛 Bug Fix
+
+- fix index  file not found
+
 ## v0.6.0 
 
 ### 🚀 New Feature

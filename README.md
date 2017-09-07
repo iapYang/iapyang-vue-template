@@ -10,11 +10,11 @@
 
 ## Changelog
 
-> V0.6.2 
+> v0.6.3 
 >
-> 🐛 Bug Fix
+> 🐛 Polish
 >
-> - fix index  file not found
+> - advance fucntion on merge options
 >
 > For more old changelog, please go to [Changelog](https://github.com/iapYang/iapyang-vue-template/blob/master/CHANGELOG.MD)
 
@@ -228,5 +228,4 @@ npm run cli -s
 
 ## To be done
 
-- [ ] bundle exports need to use .default
-- [ ] user can change webpack url font & pics size
+- [x] user can change webpack url font & pics size
