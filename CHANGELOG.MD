@@ -1,8 +1,14 @@
 # Changelog
 
-For changes in version v0.6.0 and up please go to [Readme](https://github.com/iapYang/iapyang-vue-template/blob/master/README.md)
+For latest changes in version  please go to [Readme](https://github.com/iapYang/iapyang-vue-template/blob/master/README.md)
 
 # Old Changelog
+
+## v0.6.0 
+
+### 🚀 New Feature
+
+- Now we can add mulity htmls to render, please refer it in [demo](https://github.com/iapYang/iapyang-vue-template/blob/master/demo/htmlOptions.js)
 
 ## v0.5.7
 

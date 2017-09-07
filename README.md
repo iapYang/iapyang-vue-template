@@ -10,11 +10,11 @@
 
 ## Changelog
 
-> V0.6.0 
+> V0.6.1 
 >
-> 🚀 New Feature
+> 🐛 Bug Fix
 >
-> - Now we can add mulity htmls to render, please refer it in [demo](https://github.com/iapYang/iapyang-vue-template/blob/master/demo/htmlOptions.js)
+> - fix index  file not found
 >
 > For more old changelog, please go to [Changelog](https://github.com/iapYang/iapyang-vue-template/blob/master/CHANGELOG.MD)
 
