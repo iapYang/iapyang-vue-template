@@ -223,3 +223,10 @@ npm run cli -r
 // for generate blank runable structure without vuex files
 npm run cli -s
 ```
+
+
+
+## To be done
+
+- [ ] bundle exports need to use .default
+- [ ] user can change webpack url font & pics size
