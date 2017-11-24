@@ -3,10 +3,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/iapYang/iapyang-vue-template.svg?style=flat-square)](https://github.com/iapYang/iapyang-vue-template/issues)
 [![GitHub forks](https://img.shields.io/github/forks/iapYang/iapyang-vue-template.svg?style=flat-square)](https://github.com/iapYang/iapyang-vue-template/network)
 [![GitHub stars](https://img.shields.io/github/stars/iapYang/iapyang-vue-template.svg?style=flat-square)](https://github.com/iapYang/iapyang-vue-template/stargazers)
+[![npm](https://img.shields.io/npm/dt/iapyang-vue-template.svg?style=flat)](https://www.npmjs.com/package/iapyang-vue-template)
 
 [![NPM](https://nodei.co/npm/iapyang-vue-template.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/iapyang-vue-template/)
-
-[![NPM](https://nodei.co/npm-dl/iapyang-vue-template.png?months=3&height=3)](https://nodei.co/npm/iapyang-vue-template/)
 
 ## Changelog
 
